@@ -2,12 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Meta tag penting untuk responsivitas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>k3-profile-page</title>
+    <title>K3 Profile Siantar Top</title>
+
+    <!-- 1. MEMUAT TAILWIND CSS CDN DULU (SOLUSI STYLING) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. MEMUAT FONT INTER DENGAN STYLE INLINE -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+      /* Memastikan seluruh dokumen menggunakan font dan mengisi viewport */
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
   </head>
   <body>
+    <!-- Root element tempat React akan me-render komponen App -->
     <div id="root"></div>
+    <!-- File utama React/Vite Anda -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
