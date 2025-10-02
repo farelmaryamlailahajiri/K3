@@ -1,78 +1,223 @@
-import './index.css'
 import React, { useState } from 'react';
 
-// --- Komponen Icon ---
+
+// --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" 
-    strokeLinecap="round" strokeLinejoin="round">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
     <path d="M22 4L12 14.01l-3-3" />
   </svg>
 );
 
 const Zap = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" 
-    strokeLinecap="round" strokeLinejoin="round">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
   </svg>
 );
 
 const Shield = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" 
-    strokeLinecap="round" strokeLinejoin="round">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 );
 
 const Users = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" 
-    strokeLinecap="round" strokeLinejoin="round">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
     <circle cx="9" cy="7" r="4" />
     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 );
+const X = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 6L6 18" />
+    <path d="M6 6L18 18" />
+  </svg>
+);
+// -------------------------------------------------------------------------
 
-// --- Container ---
-const Container = ({ children, full }) => (
-  <div className={full ? "w-full px-0" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"}>
-    {children}
-  </div>
+// --- Komponen Modal Reusable ---
+
+// 1. Modal Tanggap Darurat (Merah - Zap)
+const EmergencyModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const procedures = [
+        { step: 1, title: "Deteksi & Peringatan", detail: "Segera bunyikan alarm darurat dan beri tahu supervisor terdekat." },
+        { step: 2, title: "Evakuasi Diri", detail: "Tinggalkan area bahaya dengan tenang menuju titik kumpul terdekat. Jangan gunakan lift." },
+        { step: 3, title: "Titik Kumpul", detail: "Laporkan diri kepada koordinator evakuasi di titik kumpul untuk pendataan." },
+        { step: 4, title: "Penanganan Medis", detail: "Bagi yang terluka, segera berikan pertolongan pertama sambil menunggu tim medis K3." },
+    ];
+
+    return (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1000] p-4" onClick={onClose}>
+            <div 
+                className="bg-white rounded-xl shadow-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+                onClick={e => e.stopPropagation()} 
+            >
+                <div className="flex justify-between items-start mb-6 border-b pb-3">
+                    <h2 className="text-2xl font-bold text-red-600 flex items-center">
+                        <Zap className="w-7 h-7 mr-3 text-red-500" />
+                        Prosedur Tanggap Darurat
+                    </h2>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
+                </div>
+                <div className="space-y-6">
+                    {procedures.map((p) => (
+                        <div key={p.step} className="flex items-start bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                            <span className="text-xl font-extrabold text-red-600 mr-4 mt-1">{p.step}.</span>
+                            <div>
+                                <h3 className="font-semibold text-gray-800">{p.title}</h3>
+                                <p className="text-sm text-gray-600">{p.detail}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="mt-8 pt-4 border-t text-center">
+                    <p className="text-sm font-medium text-gray-600 mb-2">Nomor Darurat Internal:</p>
+                    <p className="text-2xl font-extrabold text-blue-700">119 (K3 Siantar Top)</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 2. Modal Kebijakan Keselamatan (Hijau - Shield)
+const PolicyModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const policies = [
+        { type: "Perusahaan", title: "Kewajiban Penggunaan APD", detail: "Setiap karyawan wajib menggunakan Alat Pelindung Diri (APD) sesuai SOP di area kerja yang ditentukan." },
+        { type: "Perusahaan", title: "Larangan Merokok", detail: "Dilarang merokok di area produksi, gudang, dan area terbatas lainnya kecuali di tempat yang sudah disediakan." },
+        { type: "Undang-Undang", title: "UU No. 1 Tahun 1970", detail: "Dasar hukum Keselamatan Kerja yang mencakup pencegahan kecelakaan dan penyakit akibat kerja." },
+        { type: "Undang-Undang", title: "Permenaker No. 5 Tahun 2018", detail: "Regulasi tentang Keselamatan dan Kesehatan Lingkungan Kerja (K3L) di tempat kerja." },
+    ];
+
+    return (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1000] p-4" onClick={onClose}>
+            <div 
+                className="bg-white rounded-xl shadow-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+                onClick={e => e.stopPropagation()} 
+            >
+                <div className="flex justify-between items-start mb-6 border-b pb-3">
+                    <h2 className="text-2xl font-bold text-emerald-600 flex items-center">
+                        <Shield className="w-7 h-7 mr-3 text-emerald-500" />
+                        Kebijakan & Regulasi K3
+                    </h2>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
+                </div>
+
+                <p className="text-lg text-gray-700 mb-6 font-semibold">
+                    Simulasi Peraturan Inti Perusahaan & Dasar Hukum K3 Nasional.
+                </p>
+
+                <div className="space-y-4">
+                    {policies.map((p, index) => (
+                        <div key={index} className="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                            <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${p.type === "Perusahaan" ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>
+                                {p.type}
+                            </span>
+                            <h3 className="font-semibold text-gray-800 mt-2">{p.title}</h3>
+                            <p className="text-sm text-gray-600">{p.detail}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 3. Modal Edukasi & Pelatihan (Biru - Users)
+const EducationModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const trainings = [
+        { type: "Video", title: "Penggunaan APD yang Benar", placeholder: "https://placehold.co/400x225/2563EB/FFFFFF?text=Video+APD", description: "Video tutorial langkah demi langkah cara memakai APD di lini produksi." },
+        { type: "Galeri", title: "Simulasi Kebakaran", placeholder: "https://placehold.co/400x225/10B981/FFFFFF?text=Simulasi+Kebakaran", description: "Kumpulan foto/grafik panduan jalur evakuasi dan penggunaan APAR." },
+    ];
+
+    return (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1000] p-4" onClick={onClose}>
+            <div 
+                className="bg-white rounded-xl shadow-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+                onClick={e => e.stopPropagation()} 
+            >
+                <div className="flex justify-between items-start mb-6 border-b pb-3">
+                    <h2 className="text-2xl font-bold text-blue-600 flex items-center">
+                        <Users className="w-7 h-7 mr-3 text-blue-500" />
+                        Edukasi & Pelatihan K3
+                    </h2>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
+                </div>
+
+                <p className="text-lg text-gray-700 mb-8">
+                    Akses materi pelatihan interaktif untuk meningkatkan kesadaran dan kompetensi K3.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {trainings.map((t, index) => (
+                        <div key={index} className="rounded-lg border border-gray-200 overflow-hidden shadow-md">
+                            <img src={t.placeholder} alt={t.title} className="w-full h-auto object-cover"/>
+                            <div className="p-4">
+                                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                                    {t.type}
+                                </span>
+                                <h3 className="font-semibold text-gray-800 mt-2">{t.title}</h3>
+                                <p className="text-sm text-gray-600">{t.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// Komponen Container yang mengatur lebar maksimum konten
+const Container = ({ children }) => (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+    </div>
 );
 
-// --- Main App ---
+// Main Application Component
 const App = () => {
   const [safetyMessage, setSafetyMessage] = useState("Keselamatan adalah Prioritas Kami.");
+  
+  // State untuk mengontrol setiap modal
+  const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
+  const [isPolicyModalOpen, setIsPolicyModalOpen] = useState(false);
+  const [isEducationModalOpen, setIsEducationModalOpen] = useState(false);
 
+  // Data untuk Area Fokus K3
   const focusAreas = [
     {
       icon: <Shield className="w-8 h-8 text-white" />,
       title: "Kebijakan Keselamatan",
-      description: "Menerapkan standar dan prosedur K3 sesuai regulasi untuk menjamin lingkungan kerja yang aman.",
-      color: "bg-emerald-600 hover:bg-emerald-700"
+      description: "Peraturan perusahaan dan undang-undang K3. (Klik untuk melihat)",
+      color: "bg-emerald-600 hover:bg-emerald-700",
+      action: () => setIsPolicyModalOpen(true) // Membuka Modal Kebijakan
     },
     {
       icon: <Users className="w-8 h-8 text-white" />,
       title: "Edukasi & Pelatihan",
-      description: "Memberikan pelatihan K3 rutin dan komprehensif kepada seluruh karyawan dan mitra kerja.",
-      color: "bg-blue-600 hover:bg-blue-700"
+      description: "Video tutorial, gambar, dan materi pelatihan. (Klik untuk melihat)",
+      color: "bg-blue-600 hover:bg-blue-700",
+      action: () => setIsEducationModalOpen(true) // Membuka Modal Edukasi
     },
     {
       icon: <Zap className="w-8 h-8 text-white" />,
       title: "Tanggap Darurat",
-      description: "Prosedur penanganan cepat dan efektif untuk kebakaran, bencana alam, dan kecelakaan kerja.",
-      color: "bg-red-600 hover:bg-red-700" 
+      description: "Prosedur penanganan cepat dan efektif untuk kebakaran, bencana alam, dan kecelakaan kerja. (Klik untuk detail)",
+      color: "bg-red-600 hover:bg-red-700",
+      action: () => setIsEmergencyModalOpen(true) // Membuka Modal Tanggap Darurat
     },
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 font-inter overflow-x-hidden">
-
+      
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-gray-900 shadow-xl w-full"> 
         <Container> 
@@ -90,9 +235,9 @@ const App = () => {
         </Container>
       </header>
 
-      {/* HERO SECTION – full width */}
+      {/* HERO SECTION */}
       <section id="home" className="bg-blue-700 text-white py-20 md:py-32 w-full">
-        <Container full>
+        <Container>
           <div className="text-center">
             <Shield className="w-16 h-16 mx-auto mb-6 text-emerald-300"/>
             <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
@@ -120,7 +265,11 @@ const App = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {focusAreas.map((area, index) => (
-              <div key={index} className={`p-8 rounded-xl shadow-2xl ${area.color} text-white transition duration-500 ease-in-out`}>
+              <div 
+                key={index} 
+                onClick={area.action} 
+                className={`p-8 rounded-xl shadow-2xl ${area.color} text-white transition duration-500 ease-in-out cursor-pointer transform hover:scale-[1.02]`}
+              >
                 <div className="flex justify-center mb-4">
                   <div className="p-3 bg-white/20 rounded-full">
                     {area.icon}
@@ -161,7 +310,7 @@ const App = () => {
               </ul>
             </div>
             
-            {/* Mock Stats */}
+            {/* Mock Statistics Card */}
             <div className="md:w-1/2 p-8 bg-blue-100 rounded-xl shadow-lg">
               <div className="grid grid-cols-2 gap-6 text-center">
                 <div>
@@ -174,13 +323,14 @@ const App = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </Container>
       </section>
 
-      {/* CTA SECTION */}
+      {/* CALL TO ACTION / Safety Message Update */}
       <section className="bg-emerald-500 py-12 w-full">
-        <Container full>
+        <Container>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Pesan Keselamatan Hari Ini
@@ -196,17 +346,23 @@ const App = () => {
         </Container>
       </section>
 
+
       {/* FOOTER */}
       <footer id="contact" className="bg-gray-900 text-gray-300 py-10 mt-auto w-full">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            {/* Company Info */}
             <div>
               <h4 className="text-xl font-bold text-emerald-400 mb-4">Siantar Top</h4>
               <p className="text-sm">
-                Divisi Kesehatan & Keselamatan Kerja (K3)<br/>
+                Divisi Kesehatan & Keselamatan Kerja (K3)
+                <br/>
                 Jl. Raya Jati, Sidoarjo, Jawa Timur
               </p>
             </div>
+
+            {/* Quick Links */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Akses Cepat</h4>
               <ul className="space-y-2 text-sm">
@@ -215,6 +371,8 @@ const App = () => {
                 <li><a href="#commitment" className="hover:text-emerald-400">Komitmen</a></li>
               </ul>
             </div>
+
+            {/* K3 Resources */}
             <div>
               <h4 className="text-lg font-semibold mb-4">K3 Sumber Daya</h4>
               <ul className="space-y-2 text-sm">
@@ -223,19 +381,28 @@ const App = () => {
                 <li><a href="#" className="hover:text-emerald-400">Nomor Darurat</a></li>
               </ul>
             </div>
+
+            {/* Contact */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Hubungi Kami</h4>
               <p className="text-sm">
-                Email: k3@siantartop.com<br/>
+                Email: k3@siantartop.com
+                <br/>
                 Telp Darurat: (031) 123-456
               </p>
             </div>
           </div>
+          
           <div className="mt-10 pt-6 border-t border-gray-700 text-center">
             <p className="text-sm">&copy; {new Date().getFullYear()} Siantar Top K3 Division. All rights reserved.</p>
           </div>
         </Container>
       </footer>
+
+      {/* RENDER SEMUA MODAL */}
+      <EmergencyModal isOpen={isEmergencyModalOpen} onClose={() => setIsEmergencyModalOpen(false)} />
+      <PolicyModal isOpen={isPolicyModalOpen} onClose={() => setIsPolicyModalOpen(false)} />
+      <EducationModal isOpen={isEducationModalOpen} onClose={() => setIsEducationModalOpen(false)} />
     </div>
   );
 };
