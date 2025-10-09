@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
+
 
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
@@ -446,7 +454,12 @@ const App = () => {
         <Container> 
           <div className="py-4 flex justify-between items-center">
             <div className="text-2xl font-bold text-emerald-400">
-              K3 <span className="text-white">Siantar Top</span>
+              <img
+                src="assets/siantartop.png" 
+                alt="Siantar Top Logo" 
+                className='h-10 w-auto'
+              />
+              {/* <span className="text-2xl font-extrabold text-emerald-400 ml-[4px]">K3</span> */}
             </div>
             <nav className="hidden md:flex space-x-6">
               <a href="#home" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
@@ -460,31 +473,85 @@ const App = () => {
 
       {/* HERO SECTION - Diperbarui dengan Styling yang Lebih Rapi dan Berdampak */}
       <section id="home" className="bg-gray-900 text-white py-24 md:py-40 w-full shadow-2xl">
-        <Container>
-          <div className="text-center">
-            {/* Ikon K3 yang lebih besar dan diberi warna aksen mencolok */}
-            <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400 animate-bounce-slow" />
-            
-            {/* Judul utama: Font sangat tebal (extrabold) dengan ukuran besar dan tracking yang rapat */}
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-              Keselamatan Kerja, <span className="text-emerald-400">Kualitas Utama</span>
-            </h1>
-            
-            {/* Sub-teks: Font lebih ringan (light) dan warna abu-abu terang untuk kontras yang nyaman */}
-            <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-              Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat, dan produktif bagi setiap insan.
-            </p>
-            
-            {/* Call to Action (CTA): Tombol yang lebih besar, berbentuk persegi, dan menggunakan warna primer */}
-            <a 
-              href="#pillars" 
-              className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
-            >
-              Jelajahi Pilar K3 Kami
-            </a>
-          </div>
-        </Container>
-      </section>
+        <div>
+          <Swiper
+            modules={[Navigation, EffectFade, Autoplay]}
+            effect="fade"
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            className="mySwiper"
+            fadeEffect={{ crossFade: true }}
+          >
+        {/* SLIDE 1 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Keselamatan Kerja,{" "}
+                <span className="text-emerald-400">Kualitas Utama</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
+                dan produktif bagi setiap insan.
+              </p>
+              <a
+                href="#pillars"
+                className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
+              >
+                Jelajahi Pilar K3 Kami
+              </a>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 2 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+              Lingkungan Aman,{" "}
+              <span className="text-yellow-400">Produktivitas Maksimal</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
+                langkah kerja penuh kehati-hatian dan tanggung jawab.
+              </p>
+              <a
+                href="#programs"
+                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
+              >
+                Lihat Program Kami
+              </a>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 3 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Bersama Membangun{" "}
+                <span className="text-blue-400">Budaya Keselamatan</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
+                menciptakan lingkungan kerja yang selamat dan berkualitas.
+              </p>
+              <a
+                href="#contact"
+                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
+              >
+                Hubungi Tim K3
+              </a>
+            </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
