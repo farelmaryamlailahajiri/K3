@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
 
 
 // --- Komponen Icon (menggunakan inline SVG) ---
@@ -34,6 +41,21 @@ const X = (props) => (
     <path d="M18 6L6 18" />
     <path d="M6 6L18 18" />
   </svg>
+);
+// --- ICON BARU UNTUK LAPORAN ---
+const AlertTriangle = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </svg>
+);
+const Upload = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+    </svg>
 );
 // -------------------------------------------------------------------------
 
@@ -146,7 +168,7 @@ const EducationModal = ({ isOpen, onClose }) => {
           title: "Penanganan Darurat: Simulasi Kebakaran", 
           placeholder: "https://placehold.co/400x225/FF6347/FFFFFF?text=Simulasi+Kebakaran+Pabrik", 
           description: "Pelatihan visual mengenai evakuasi, penggunaan APAR, dan prosedur titik kumpul jika terjadi kebakaran di area pabrik.",
-          url: "http://www.youtube.com/watch?v=OO5w_GNqx08"
+          url: "http://www.youtube.com/watch?v=OO5w_GNqx08"
         },
     ];
     // ---------------------------------------------------
@@ -194,6 +216,185 @@ const EducationModal = ({ isOpen, onClose }) => {
     );
 };
 
+// 4. Modal Lapor Pelanggaran K3 (Kuning - AlertTriangle)
+const ReportViolationModal = ({ isOpen, onClose }) => {
+    // State untuk mengelola input form
+    const [formData, setFormData] = useState({
+        reporterName: '', // Nama Pelapor
+        violationType: '', // Jenis Pelanggaran
+        description: '', // Deskripsi
+        photoFile: null, // File Foto
+    });
+    // State untuk pesan status (misalnya, setelah submit)
+    const [submitStatus, setSubmitStatus] = useState('');
+
+    if (!isOpen) return null;
+
+    // Handler perubahan input teks dan textarea
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Handler perubahan input file
+    const handleFileChange = (e) => {
+        setFormData(prev => ({ ...prev, photoFile: e.target.files[0] }));
+    };
+
+    // Handler submit form
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        // Cek validasi dasar
+        if (!formData.violationType || !formData.description || !formData.photoFile) {
+            setSubmitStatus('Harap isi Jenis Pelanggaran, Deskripsi, dan Unggah Foto.');
+            return;
+        }
+
+        // Logika pengiriman data (simulasi)
+        console.log("Data Pelanggaran Dikirim:", formData);
+        
+        // Simulasikan pengiriman berhasil
+        setSubmitStatus('Laporan berhasil dikirim! Akan segera ditindaklanjuti.');
+        
+        // Reset form setelah beberapa saat atau biarkan user melihat pesan sukses
+        setTimeout(() => {
+            setFormData({ reporterName: '', violationType: '', description: '', photoFile: null });
+            setSubmitStatus('');
+            onClose(); // Tutup modal setelah submit
+        }, 3000); 
+    };
+
+    const violationOptions = [
+        "Pilih Jenis Pelanggaran...",
+        "Penggunaan APD Tidak Sesuai",
+        "Tindakan Tidak Aman",
+        "Kondisi Peralatan Berbahaya",
+        "Jalur Evakuasi Terhalang",
+        "Pelanggaran Prosedur Sanitasi Pangan",
+        "Lainnya",
+    ];
+
+    const isFormValid = formData.violationType && formData.description && formData.photoFile;
+
+    return (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1000] p-4" onClick={onClose}>
+            <div 
+                className="bg-white rounded-xl shadow-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+                onClick={e => e.stopPropagation()} 
+            >
+                {/* Header Modal */}
+                <div className="flex justify-between items-start mb-6 border-b pb-3">
+                    <h2 className="text-2xl font-bold text-yellow-600 flex items-center">
+                        <AlertTriangle className="w-7 h-7 mr-3 text-yellow-500" />
+                        Lapor Pelanggaran K3 (Anonim)
+                    </h2>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
+                </div>
+                
+                {/* Status Sukses/Error */}
+                {submitStatus && (
+                    <div className={`p-3 mb-4 rounded-lg text-sm font-medium ${submitStatus.includes('berhasil') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                        {submitStatus}
+                    </div>
+                )}
+
+                {/* Form Laporan */}
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    
+                    {/* Input Nama Pelapor */}
+                    <div>
+                        <label htmlFor="reporterName" className="block text-sm font-medium text-gray-700 mb-1">Nama Pelapor (Opsional)</label>
+                        <input
+                            type="text"
+                            id="reporterName"
+                            name="reporterName"
+                            value={formData.reporterName}
+                            onChange={handleInputChange}
+                            placeholder="Nama atau Inisial (Rahasia)"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
+                        />
+                    </div>
+
+                    {/* Input Jenis Pelanggaran */}
+                    <div>
+                        <label htmlFor="violationType" className="block text-sm font-medium text-gray-700 mb-1">Jenis Pelanggaran <span className="text-red-500">*</span></label>
+                        <select
+                            id="violationType"
+                            name="violationType"
+                            value={formData.violationType}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150 bg-white"
+                        >
+                            {violationOptions.map(option => (
+                                <option key={option} value={option === violationOptions[0] ? "" : option} disabled={option === violationOptions[0]}>{option}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Input Deskripsi */}
+                    <div>
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Deskripsi Detail Pelanggaran <span className="text-red-500">*</span></label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="3"
+                            value={formData.description}
+                            onChange={handleInputChange}
+                            placeholder="Jelaskan apa, di mana, dan kapan pelanggaran terjadi. (Contoh: Karyawan X melepas helm di Area Produksi Lantai 3 pukul 14:00)"
+                            required
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
+                        ></textarea>
+                    </div>
+
+
+                    {/* Input Unggah Foto */}
+                    <div>
+                        <label htmlFor="photoFile" className="block text-sm font-medium text-gray-700 mb-1">Unggah Foto Bukti (Maks. 5MB) <span className="text-red-500">*</span></label>
+                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-yellow-400 transition duration-150 cursor-pointer">
+                            <label htmlFor="photoFileInput" className="text-center cursor-pointer">
+                                <Upload className="mx-auto h-8 w-8 text-gray-400" />
+                                <div className="text-sm text-gray-600 mt-2">
+                                    <span className="font-medium text-yellow-600 hover:text-yellow-500">
+                                        {formData.photoFile ? formData.photoFile.name : 'Pilih file'}
+                                    </span>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-1">PNG, JPG, JPEG hingga 5MB</p>
+                            </label>
+                            <input
+                                id="photoFileInput"
+                                name="photoFile"
+                                type="file"
+                                accept="image/png, image/jpeg, image/jpg"
+                                required
+                                onChange={handleFileChange}
+                                className="sr-only" // Menyembunyikan input file standar
+                            />
+                        </div>
+                        {formData.photoFile && (
+                            <p className="text-xs mt-2 text-gray-500">File terpilih: **{formData.photoFile.name}**</p>
+                        )}
+                    </div>
+                    
+                    {/* Tombol Submit */}
+                    <button
+                        type="submit"
+                        disabled={!isFormValid}
+                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 transition duration-150"
+                    >
+                        Kirim Laporan
+                    </button>
+                </form>
+
+                <p className="mt-4 text-xs text-gray-500 text-center">
+                    Laporan Anda adalah kontribusi penting bagi keselamatan. Kerahasiaan identitas akan **dijamin**.
+                </p>
+            </div>
+        </div>
+    );
+};
+
 // Komponen Container yang mengatur lebar maksimum konten
 const Container = ({ children }) => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -209,9 +410,19 @@ const App = () => {
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
   const [isPolicyModalOpen, setIsPolicyModalOpen] = useState(false);
   const [isEducationModalOpen, setIsEducationModalOpen] = useState(false);
+  // --- STATE BARU UNTUK LAPORAN PELANGGARAN ---
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   // Data untuk Area Fokus K3
   const focusAreas = [
+    // --- TAMBAH FOKUS AREA LAPORAN PELANGGARAN ---
+    {
+      icon: <AlertTriangle className="w-8 h-8 text-white" />,
+      title: "Lapor Pelanggaran K3",
+      description: "Gunakan jalur rahasia ini untuk melaporkan tindakan atau kondisi tidak aman. (Klik untuk Lapor)",
+      color: "bg-yellow-600 hover:bg-yellow-700",
+      action: () => setIsReportModalOpen(true) // Membuka Modal Laporan
+    },
     {
       icon: <Shield className="w-8 h-8 text-white" />,
       title: "UU Perusahaan Pangan",
@@ -243,7 +454,12 @@ const App = () => {
         <Container> 
           <div className="py-4 flex justify-between items-center">
             <div className="text-2xl font-bold text-emerald-400">
-              K3 <span className="text-white">Siantar Top</span>
+              <img
+                src="assets/siantartop.png" 
+                alt="Siantar Top Logo" 
+                className='h-10 w-auto'
+              />
+              {/* <span className="text-2xl font-extrabold text-emerald-400 ml-[4px]">K3</span> */}
             </div>
             <nav className="hidden md:flex space-x-6">
               <a href="#home" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
@@ -257,44 +473,98 @@ const App = () => {
 
       {/* HERO SECTION - Diperbarui dengan Styling yang Lebih Rapi dan Berdampak */}
       <section id="home" className="bg-gray-900 text-white py-24 md:py-40 w-full shadow-2xl">
-        <Container>
-          <div className="text-center">
-            {/* Ikon K3 yang lebih besar dan diberi warna aksen mencolok */}
-            <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400 animate-bounce-slow" />
-            
-            {/* Judul utama: Font sangat tebal (extrabold) dengan ukuran besar dan tracking yang rapat */}
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-              Keselamatan Kerja, <span className="text-emerald-400">Kualitas Utama</span>
-            </h1>
-            
-            {/* Sub-teks: Font lebih ringan (light) dan warna abu-abu terang untuk kontras yang nyaman */}
-            <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-              Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat, dan produktif bagi setiap insan.
-            </p>
-            
-            {/* Call to Action (CTA): Tombol yang lebih besar, berbentuk persegi, dan menggunakan warna primer */}
-            <a 
-              href="#pillars" 
-              className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
-            >
-              Jelajahi Pilar K3 Kami
-            </a>
-          </div>
-        </Container>
-      </section>
+        <div>
+          <Swiper
+            modules={[Navigation, EffectFade, Autoplay]}
+            effect="fade"
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            className="mySwiper"
+            fadeEffect={{ crossFade: true }}
+          >
+        {/* SLIDE 1 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Keselamatan Kerja,{" "}
+                <span className="text-emerald-400">Kualitas Utama</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
+                dan produktif bagi setiap insan.
+              </p>
+              <a
+                href="#pillars"
+                className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
+              >
+                Jelajahi Pilar K3 Kami
+              </a>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 2 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+              Lingkungan Aman,{" "}
+              <span className="text-yellow-400">Produktivitas Maksimal</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
+                langkah kerja penuh kehati-hatian dan tanggung jawab.
+              </p>
+              <a
+                href="#programs"
+                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
+              >
+                Lihat Program Kami
+              </a>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 3 */}
+        <SwiperSlide>
+          <div className="text-center">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Bersama Membangun{" "}
+                <span className="text-blue-400">Budaya Keselamatan</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
+                menciptakan lingkungan kerja yang selamat dan berkualitas.
+              </p>
+              <a
+                href="#contact"
+                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
+              >
+                Hubungi Tim K3
+              </a>
+            </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
         <Container>
           <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">
-            Tiga Pilar Utama K3
+            Empat Pilar Utama K3
           
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Kami membangun budaya keselamatan yang kuat melalui tiga fokus area inti yang berkelanjutan.
+            Kami membangun budaya keselamatan yang kuat melalui empat fokus area inti yang berkelanjutan.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {focusAreas.map((area, index) => (
               <div 
                 key={index} 
@@ -306,8 +576,8 @@ const App = () => {
                     {area.icon}
                   </div>
                 </div>
-                <h3 className="text-2xl font-semibold mb-3 text-center">{area.title}</h3>
-                <p className="text-center text-gray-100">{area.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-center">{area.title}</h3>
+                <p className="text-center text-sm text-gray-100">{area.description}</p>
               </div>
             ))}
           </div>
@@ -434,6 +704,8 @@ const App = () => {
       <EmergencyModal isOpen={isEmergencyModalOpen} onClose={() => setIsEmergencyModalOpen(false)} />
       <PolicyModal isOpen={isPolicyModalOpen} onClose={() => setIsPolicyModalOpen(false)} />
       <EducationModal isOpen={isEducationModalOpen} onClose={() => setIsEducationModalOpen(false)} />
+      {/* RENDER MODAL BARU */}
+      <ReportViolationModal isOpen={isReportModalOpen} onClose={() => setIsReportModalOpen(false)} />
     </div>
   );
 };
