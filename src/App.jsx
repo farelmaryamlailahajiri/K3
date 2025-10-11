@@ -178,17 +178,17 @@ const EducationModal = ({ isOpen, onClose }) => {
   const trainings = [
     { 
       type: "Video", 
-      title: "Dasar K3: Hygiene dan Sanitasi Pangan", 
+      title: " Sistem Manajemen Keamanan Pangan", 
       placeholder: "https://placehold.co/400x225/2563EB/FFFFFF?text=Video+K3+Pangan", 
-      description: "Tutorial mengenai prosedur mencuci tangan, pemakaian APD di area sensitif, dan sanitasi peralatan untuk mencegah kontaminasi produk.",
-      url: "http://www.youtube.com/watch?v=xziOgdo5a_I"
+      description: "Konsep dasar food safety (keamanan pangan), termasuk definisi sistem manajemen keamanan pangan dan peran pentingnya dalam menjaga makanan agar aman dikonsumsi.",
+      url: "https://youtu.be/DXx_72UNr38"
     },
     { 
       type: "Video", 
-      title: "Penanganan Darurat: Simulasi Kebakaran", 
+      title: "Implementasi Sistem Manajemen Keamanan Pangan ISO 22000:2018", 
       placeholder: "https://placehold.co/400x225/FF6347/FFFFFF?text=Simulasi+Kebakaran+Pabrik", 
-      description: "Pelatihan visual mengenai evakuasi, penggunaan APAR, dan prosedur titik kumpul jika terjadi kebakaran di area pabrik.",
-      url: "http://www.youtube.com/watch?v=OO5w_GNqx08"
+      description: "Cara menerapkan standar ISO 22000:2018 di organisasi / perusahaan pangan. Penjelasan mencakup bagaimana ISO 22000 membantu organisasi mengurangi risiko pangan (food-safety risk), serta bagaimana standar ini mencakup risiko pada tingkat operasional & organisasi.",
+      url: "https://youtu.be/8_-Q9RBuNgA"
     },
   ];
 
