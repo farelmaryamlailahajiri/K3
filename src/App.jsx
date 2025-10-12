@@ -771,7 +771,7 @@ const App = () => {
       </header>
 
       {/* HERO SECTION */}
-      <section id="home" className="bg-gray-900 text-white py-24 md:py-40 w-full shadow-2xl">
+      <section id="home" className="bg-gray-900 text-white w-full shadow-2xl">
         <div>
           <Swiper
             modules={[Navigation, EffectFade, Autoplay]}
@@ -785,72 +785,87 @@ const App = () => {
             loop={true}
             className="mySwiper"
             fadeEffect={{ crossFade: true }}
+            style={{ overflow: 'visible' }}
           >
         {/* SLIDE 1 */}
         <SwiperSlide>
-          <div className="text-center">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-                Keselamatan Kerja,{" "}
+          <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+            style={{ backgroundImage: "url('/assets/tentangsiantartop.jpg')"}}>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+              <div className="relative z-10">
+                <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
+                <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                  Keselamatan Kerja,{" "}
                 <span className="text-emerald-400">Kualitas Utama</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-                Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
-                dan produktif bagi setiap insan.
-              </p>
-              <a
-                href="#pillars"
-                className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
-              >
-                Jelajahi Pilar K3 Kami
-              </a>
+                </h1>
+                <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                  Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
+                  dan produktif bagi setiap insan.
+                </p>
+                <a
+                  href="#pillars"
+                  className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
+                >
+                  Jelajahi Pilar K3 Kami
+                </a>
+              </div>
           </div>
-        </SwiperSlide>
+        </SwiperSlide>
 
         {/* SLIDE 2 */}
         <SwiperSlide>
-          <div className="text-center">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-              Lingkungan Aman,{" "}
-              <span className="text-yellow-400">Produktivitas Maksimal</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
+        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+        style={{ backgroundImage: "url('/assets/pabrik.jpg')"}}>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+            <div className="relative z-10">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Lingkungan Aman,{" "}
+                <span className="text-yellow-400">Produktivitas Maksimal</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
                 langkah kerja penuh kehati-hatian dan tanggung jawab.
-              </p>
-              <a
-                href="#programs"
-                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
-              >
-                Lihat Program Kami
-              </a>
-          </div>
-        </SwiperSlide>
+              </p>
+              <a
+                href="#programs"
+                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
+              >
+                Lihat Program Kami
+              </a>
+            </div>
+        </div>
+        </SwiperSlide>
+
 
         {/* SLIDE 3 */}
         <SwiperSlide>
-          <div className="text-center">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-                Bersama Membangun{" "}
-                <span className="text-blue-400">Budaya Keselamatan</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
+        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+        style={{ backgroundImage: "url('/assets/karyawan.jpg')"}}>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+            <div className="relative z-10">
+            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Bersama Membangun{" "}
+                <span className="text-blue-400">Budaya Keselamatan</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
                 menciptakan lingkungan kerja yang selamat dan berkualitas.
-              </p>
-              <a
-                href="#contact"
-                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
-              >
-                Hubungi Tim K3
-              </a>
-            </div>
-        </SwiperSlide>
-      </Swiper>
-    </div>
-  </section>
+              </p>
+              <a
+                href="#contact"
+                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
+              >
+                Hubungi Tim K3
+              </a>
+            </div>
+        </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
+
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
