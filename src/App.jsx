@@ -7,6 +7,8 @@ import 'swiper/css/effect-fade';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
 
+import AboutSection from "./components/AboutSection";
+
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -765,6 +767,7 @@ const App = () => {
               <a href="#pillars" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Pilar K3</a>
               <a href="#commitment" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Komitmen</a>
               <a href="#contact" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Kontak</a>
+              <a href="#about" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium" rel='AboutSection.jsx'>Tentang</a>
             </nav>
           </div>
         </Container>
@@ -791,7 +794,7 @@ const App = () => {
         <SwiperSlide>
           <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
             style={{ backgroundImage: "url('/assets/tentangsiantartop.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
               <div className="relative z-10">
                 <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
                 <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
@@ -800,49 +803,49 @@ const App = () => {
                 </h1>
                 <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
                   Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
-                  dan produktif bagi setiap insan.
-                </p>
-                <a
-                  href="#pillars"
-                  className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
-                >
-                  Jelajahi Pilar K3 Kami
-                </a>
-              </div>
+                  dan produktif bagi setiap insan.
+                </p>
+                <a
+                  href="#pillars"
+                  className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
+                >
+                  Jelajahi Pilar K3 Kami
+                </a>
+              </div>
           </div>
-        </SwiperSlide>
+        </SwiperSlide>
 
         {/* SLIDE 2 */}
         <SwiperSlide>
-        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
-        style={{ backgroundImage: "url('/assets/pabrik.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+        style={{ backgroundImage: "url('/assets/goriorio.jpg')"}}>
+            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
             <div className="relative z-10">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-                Lingkungan Aman,{" "}
-                <span className="text-yellow-400">Produktivitas Maksimal</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
+            <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Lingkungan Aman,{" "}
+                <span className="text-yellow-400">Produktivitas Maksimal</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
                 langkah kerja penuh kehati-hatian dan tanggung jawab.
-              </p>
-              <a
-                href="#programs"
-                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
-              >
-                Lihat Program Kami
-              </a>
-            </div>
-        </div>
+              </p>
+              <a
+                href="#programs"
+                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
+              >
+                Lihat Program Kami
+              </a>
+            </div>
+          </div>
         </SwiperSlide>
 
 
         {/* SLIDE 3 */}
         <SwiperSlide>
         <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
-        style={{ backgroundImage: "url('/assets/karyawan.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+        style={{ backgroundImage: "url('/assets/dharmabakti.jpg')"}}>
+            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
             <div className="relative z-10">
             <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
               <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
@@ -967,8 +970,8 @@ const App = () => {
             
             {/* Company Info */}
             <div>
-              <h4 className="text-xl font-bold text-emerald-400 mb-4">Siantar Top</h4>
-              <p className="text-sm">
+              <img src="assets/siantartop.png" alt="Siantar Top Logo" style={{ width: '200px', height: 'auto' }}/>
+              <p className="text-sm" style={{ marginTop: '20px' }}>
                 Divisi Kesehatan & Keselamatan Kerja (K3)
                 <br/>
                 Jl. Raya Jati, Sidoarjo, Jawa Timur
