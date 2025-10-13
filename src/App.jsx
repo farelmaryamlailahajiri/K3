@@ -80,6 +80,18 @@ const FileText = (props) => (
   </svg>
 );
 
+// --- ICON BARU UNTUK HAMBURGER ---
+const Menu = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    {/* Kotak Outline */}
+    <rect x="2" y="2" width="20" height="20" rx="2" /> 
+    {/* Garis Hamburger */}
+    <line x1="7" y1="12" x2="17" y2="12" />
+    <line x1="7" y1="8" x2="17" y2="8" />
+    <line x1="7" y1="16" x2="17" y2="16" />
+  </svg>
+);
+
 // -------------------------------------------------------------------------
 
 // --- Komponen Modal Reusable ---
@@ -684,6 +696,9 @@ const Container = ({ children }) => (
 const App = () => {
   const [safetyMessage, setSafetyMessage] = useState("Keselamatan adalah Prioritas Kami.");
   
+  // State untuk menu Mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   // State untuk mengontrol setiap modal
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
   const [isPolicyModalOpen, setIsPolicyModalOpen] = useState(false);
@@ -748,19 +763,49 @@ const App = () => {
     setIsUUSelectionModalOpen(true);
   };
 
+  const safetyMessages = [
+    "Keselamatan adalah tanggung jawab bersama. Mari kita jaga satu sama lain!",
+    "Waspada, Peduli, Selamat! Kita Jaga Bersama.",
+    "Gunakan APD dengan benar, lindungi diri Anda setiap saat!",
+    "Kecelakaan dapat dicegah dengan kehati-hatian dan disiplin.",
+    "Keselamatan kerja bukan pilihan, tapi keharusan!",
+    "Periksa peralatan sebelum bekerja. Pastikan semuanya aman!",
+    "Laporkan kondisi berbahaya segera. Keselamatan adalah prioritas!",
+    "Bekerja dengan aman hari ini, pulang dengan selamat untuk keluarga.",
+    "Ingat! Tidak ada pekerjaan yang lebih penting dari keselamatan Anda.",
+    "Budaya K3 dimulai dari Anda. Jadilah teladan keselamatan!"
+  ];
+
+  const [safetyMessage, setSafetyMessage] = useState(safetyMessages[0]);
+
+  const getRandomMessage = () => {
+    const currentMessage = safetyMessage;
+    let newMessage;
+    
+    // Pastikan pesan baru berbeda dengan pesan sekarang
+    do {
+      const randomIndex = Math.floor(Math.random() * safetyMessages.length);
+      newMessage = safetyMessages[randomIndex];
+    } while (newMessage === currentMessage);
+    
+    setSafetyMessage(newMessage);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 font-inter overflow-x-hidden">
       
       {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-gray-900 shadow-xl w-full"> 
+      <header className="sticky top-0 z-50 bg-gray-900 shadow-xl w-full relative"> 
         <Container> 
           <div className="py-4 flex justify-between items-center">
             <div className="text-2xl font-bold text-emerald-400">
-              <img
-                src="assets/siantartop.png" 
-                alt="Siantar Top Logo" 
-                className='h-10 w-auto'
-              />
+              <a href="https://www.siantartop.co.id/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                <img
+                  src="assets/siantartop.png" 
+                  alt="Siantar Top Logo" 
+                  className='h-10 w-auto'
+                />
+              </a>
             </div>
             <nav className="hidden md:flex space-x-6">
               <a href="#home" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
@@ -769,6 +814,26 @@ const App = () => {
               <a href="#contact" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Kontak</a>
               <a href="#about" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium" rel='AboutSection.jsx'>Tentang</a>
             </nav>
+            <div className="md:hidden">
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle state saat diklik
+                className="text-gray-300 hover:text-emerald-400 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                {/* Ganti ikon berdasarkan state */}
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+          {/* Tampil/sembunyi dropdown */}
+          <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-full right-2 mt-2 w-56 bg-gray-900 rounded-lg shadow-xl border border-gray-700 mg-right-4`}>
+            <div className="flex flex-col items-center space-y-4 py-6">
+              <a href="#home" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
+              <a href="#pillars" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Pilar K3</a>
+              <a href="#commitment" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Komitmen</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Kontak</a>
+              <a href="#about" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium" rel='AboutSection.jsx'>Tentang</a>
+            </div>
           </div>
         </Container>
       </header>
@@ -952,12 +1017,12 @@ const App = () => {
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Pesan Keselamatan Hari Ini
             </h3>
-            <p className="text-xl text-gray-800 font-medium mb-6">{safetyMessage}</p>
+            <p className="text-xl text-gray-800 font-medium mb-6 transition-opacity duration-300">{safetyMessage}</p>
             <button 
-              onClick={() => setSafetyMessage("Waspada, Peduli, Selamat! Kita Jaga Bersama.")}
-              className="px-6 py-3 bg-white text-emerald-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
+              onClick={getRandomMessage}
+              className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105"
             >
-              Pembaruan Pesan
+              Pesan Acak Berikutnya 🔄
             </button>
           </div>
         </Container>
