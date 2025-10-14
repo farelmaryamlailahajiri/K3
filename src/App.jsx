@@ -973,6 +973,39 @@ const App = () => {
     </div>
   </section>
 
+      {/* PROFILE SIANTAR TOP */}    
+      <section id="profile" className="bg-white py-20 md:py-28">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <div className="flex flex-col md:flex-row items-center gap-16 p-8">
+      
+            {/* Kolom Gambar */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/assets/favicon.png" 
+                alt="Gedung Perusahaan Siantar Top"
+                className="shadow-2xl w-80 h-auto object-cover rounded-xl transform hover:scale-105 transition duration-500"
+              />
+            </div>
+
+            {/* Kolom Teks */}
+            <div>
+              <p className="text-sm font-bold text-red-600 mb-2">TENTANG KAMI</p>
+              <h2 className="text-4xl font-bold text-slate-800 mb-4">
+                Inovasi Rasa, Kualitas Terjaga Sejak 1972
+              </h2>
+              <p className="text-gray-600 mb-4">
+                PT Siantar Top Tbk. adalah pelopor industri makanan ringan di Indonesia yang berkomitmen untuk menghadirkan produk berkualitas tinggi bagi konsumen. Sejak berdiri, kami terus berinovasi untuk menciptakan cita rasa yang digemari oleh semua kalangan.
+              </p>
+              <p className="text-gray-600 mb-6">
+                Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
+              </p>
+              <a href="#profil" className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300">
+                Profil Lebih Lengkap
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
@@ -1002,47 +1035,6 @@ const App = () => {
             ))}
           </div>
         </Container>
-      </section>
-
-      {/* PROFILE SIANTAR TOP */}    
-      <section id="profile" className="bg-white py-20 md:py-28">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-      
-            {/* Kolom Gambar */}
-            <div>
-              <img 
-                src="/assets/favicon.png" 
-                alt="Gedung Perusahaan Siantar Top"
-                className="rounded-xl shadow-2xl w-full h-auto object-cover"
-              />
-            </div>
-
-            {/* Kolom Teks */}
-            <div className="wow animate__animated animate__fadeInRight">
-              <span className="text-red-600 font-bold uppercase tracking-wider">
-                Tentang Kami
-              </span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-6 leading-tight">
-                Inovasi Rasa, Kualitas Terjaga Sejak 1972
-              </h2>
-              <p className="text-lg text-gray-600 mb-4">
-                PT Siantar Top Tbk. adalah pelopor industri makanan ringan di Indonesia yang berkomitmen untuk menghadirkan produk berkualitas tinggi bagi konsumen. Sejak berdiri, kami terus berinovasi untuk menciptakan cita rasa yang digemari oleh semua kalangan.
-              </p>
-              <p className="text-lg text-gray-600">
-                Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
-              </p>
-        
-              {/* Tombol CTA */}
-              <a
-                href="/profil-lengkap" // Ganti dengan link ke halaman profil Anda
-                className="inline-block mt-8 px-10 py-4 bg-red-600 text-white font-bold rounded-lg text-lg shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105"
-              >
-                Profil Lebih Lengkap
-              </a>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* COMMITMENT SECTION */}
