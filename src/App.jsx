@@ -694,7 +694,6 @@ const Container = ({ children }) => (
 
 // Main Application Component
 const App = () => {
-  const [safetyMessage, setSafetyMessage] = useState("Keselamatan adalah Prioritas Kami.");
   
   // State untuk menu Mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1022,7 +1021,7 @@ const App = () => {
               onClick={getRandomMessage}
               className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105"
             >
-              Pesan Acak Berikutnya 🔄
+              Pesan Keselamatan
             </button>
           </div>
         </Container>
