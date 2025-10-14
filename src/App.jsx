@@ -1096,7 +1096,7 @@ const App = () => {
 
               {/* Kolom Teks & Tombol */}
               <div className="md:col-span-2 text-center md:text-left">
-                <h3 className="text-3xl md:text-4xl font-extrabold mb-3">
+                <h3 className="text-2xl md:text-2xl font-extrabold mb-3">
                   Pesan Keselamatan Hari Ini
                 </h3>
                   <div className="flex items-center gap-3 bg-black/20 p-4 rounded-lg mb-6 transition-opacity duration-300 min-h-[60px]">
