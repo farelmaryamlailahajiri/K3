@@ -7,6 +7,8 @@ import 'swiper/css/effect-fade';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
 
+import AboutSection from "./components/AboutSection";
+
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -27,6 +29,22 @@ const Shield = (props) => (
   </svg>
 );
 
+const LightBulbIcon = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2a7 7 0 0 0-7 7c0 3.04 1.63 5.5 4 6.58V18a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.42c2.37-1.08 4-3.54 4-6.58a7 7 0 0 0-7-7z" />
+    <line x1="12" y1="20" x2="12" y2="22" />
+  </svg>
+);
+
+const UsersIcon = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
 const Users = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -40,6 +58,30 @@ const X = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 6L6 18" />
     <path d="M6 6L18 18" />
+  </svg>
+);
+
+const ShieldCheckIcon = (props) => (
+  <svg 
+    {...props} 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" // Mengatur fill menjadi none secara default
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor" // Mengatur stroke menjadi currentColor agar mudah diwarnai dengan Tailwind
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" 
+    />
+    {/* Baris path yang membuat titik kecil sudah dihapus */}
+  </svg>
+);
+
+const InfoIcon = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
@@ -850,7 +892,7 @@ const App = () => {
     <div className="min-h-screen flex flex-col bg-gray-50 font-inter overflow-x-hidden">
       
       {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-white shadow-lg w-full border-b border-gray-200"> 
+      <header className="sticky top-0 z-50 bg-gray-900 shadow-xl w-full relative"> 
         <Container> 
           <div className="py-4 flex justify-between items-center">
             <div className="text-2xl font-bold text-gray-800">
@@ -942,7 +984,7 @@ const App = () => {
             <div className="absolute inset-0 bg-black bg-opacity-70"></div>
             <div className="relative z-10">
             <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
                 Lingkungan Aman,{" "}
                 <span className="text-yellow-400">Produktivitas Maksimal</span>
               </h1>
@@ -966,27 +1008,28 @@ const App = () => {
         style={{ backgroundImage: "url('/assets/dharmabakti.jpg')"}}>
             <div className="absolute inset-0 bg-black bg-opacity-70"></div>
             <div className="relative z-10">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Bersama Membangun{" "}
-                <span className="text-blue-400">Budaya Keselamatan</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300 leading-relaxed">
-                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
+            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                Bersama Membangun{" "}
+                <span className="text-blue-400">Budaya Keselamatan</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
                 menciptakan lingkungan kerja yang selamat dan berkualitas.
-              </p>
-              <a
-                href="#contact"
-                className="inline-block px-10 py-4 bg-blue-600 text-white font-bold rounded-lg text-lg shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105"
-              >
-                Hubungi Tim K3
-              </a>
-            </div>
+              </p>
+              <a
+                href="#contact"
+                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
+              >
+                Hubungi Tim K3
+              </a>
+            </div>
         </div>
-        </SwiperSlide>
-      </Swiper>
-    </div>
-  </section>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
+
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
@@ -1098,18 +1141,18 @@ const App = () => {
       </section>
 
       {/* CALL TO ACTION / Safety Message Update */}
-      <section className="bg-emerald-600 py-12 w-full">
+      <section className="bg-emerald-500 py-12 w-full">
         <Container>
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Pesan Keselamatan Hari Ini
             </h3>
-            <p className="text-xl text-white font-medium mb-6 transition-opacity duration-300 leading-relaxed">{safetyMessage}</p>
+            <p className="text-xl text-gray-800 font-medium mb-6 transition-opacity duration-300">{safetyMessage}</p>
             <button 
               onClick={getRandomMessage}
               className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105"
             >
-              Pesan Keselamatan Lainnya
+              Pesan Keselamatan
             </button>
           </div>
         </Container>
