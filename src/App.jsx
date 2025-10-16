@@ -7,8 +7,6 @@ import 'swiper/css/effect-fade';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
 
-import AboutSection from "./components/AboutSection";
-
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -83,12 +81,17 @@ const FileText = (props) => (
 // --- ICON BARU UNTUK HAMBURGER ---
 const Menu = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    {/* Kotak Outline */}
-    <rect x="2" y="2" width="20" height="20" rx="2" /> 
-    {/* Garis Hamburger */}
-    <line x1="7" y1="12" x2="17" y2="12" />
-    <line x1="7" y1="8" x2="17" y2="8" />
-    <line x1="7" y1="16" x2="17" y2="16" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+// --- ICON BARU UNTUK P3K (PLUS) ---
+const Plus = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
   </svg>
 );
 
@@ -113,27 +116,27 @@ const EmergencyModal = ({ isOpen, onClose }) => {
         className="bg-white rounded-xl shadow-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-red-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <Zap className="w-7 h-7 mr-3 text-red-500" />
             Prosedur Tanggap Darurat
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-4">
           {procedures.map((p) => (
-            <div key={p.step} className="flex items-start bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
-              <span className="text-xl font-extrabold text-red-600 mr-4 mt-1">{p.step}.</span>
+            <div key={p.step} className="flex items-start bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+              <span className="text-xl font-bold text-red-600 mr-4 mt-1">{p.step}.</span>
               <div>
-                <h3 className="font-semibold text-gray-800">{p.title}</h3>
+                <h3 className="font-semibold text-gray-800 mb-1">{p.title}</h3>
                 <p className="text-sm text-gray-600">{p.detail}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-8 pt-4 border-t text-center">
+        <div className="mt-8 pt-6 border-t text-center bg-gray-50 rounded-lg p-4">
           <p className="text-sm font-medium text-gray-600 mb-2">Nomor Darurat Internal:</p>
-          <p className="text-2xl font-extrabold text-blue-700">119 (K3 Siantar Top)</p>
+          <p className="text-2xl font-bold text-red-600">119 (K3 Siantar Top)</p>
         </div>
       </div>
     </div>
@@ -157,25 +160,25 @@ const PolicyModal = ({ isOpen, onClose }) => {
         className="bg-white rounded-xl shadow-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-emerald-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <Shield className="w-7 h-7 mr-3 text-emerald-500" />
             Kebijakan & Regulasi K3
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
         </div>
 
-        <p className="text-lg text-gray-700 mb-6 font-semibold text-center">
+        <p className="text-lg text-gray-700 mb-6 font-medium text-center">
           Hukum Undang-Undang Terkait Perusahaan Makanan
         </p>
 
         <div className="space-y-4">
           {policies.map((p, index) => (
-            <div key={index} className="p-4 rounded-lg bg-gray-50 border border-gray-200">
-              <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${p.type === "Perusahaan" ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>
+            <div key={index} className="p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-emerald-300 transition duration-200">
+              <span className={`text-xs font-bold px-2 py-1 rounded-full ${p.type === "Perusahaan" ? 'bg-blue-100 text-blue-800' : 'bg-emerald-100 text-emerald-800'}`}>
                 {p.type}
               </span>
-              <h3 className="font-semibold text-gray-800 mt-2">{p.title}</h3>
+              <h3 className="font-semibold text-gray-800 mt-2 mb-1">{p.title}</h3>
               <p className="text-sm text-gray-600">{p.detail}</p>
             </div>
           ))}
@@ -212,31 +215,31 @@ const EducationModal = ({ isOpen, onClose }) => {
         className="bg-white rounded-xl shadow-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-blue-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <Users className="w-7 h-7 mr-3 text-blue-500" />
             Edukasi & Pelatihan K3
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
         </div>
 
-        <p className="text-lg text-gray-700 mb-8 font-semibold text-center">
+        <p className="text-lg text-gray-700 mb-8 font-medium text-center">
           Akses materi pelatihan interaktif untuk meningkatkan kesadaran dan kompetensi K3.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {trainings.map((t, index) => (
-            <div key={index} className="rounded-lg border border-gray-200 overflow-hidden shadow-md">
+            <div key={index} className="rounded-lg border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition duration-300">
               <a href={t.url} target="_blank" rel="noopener noreferrer" className="block">
-                <img src={t.placeholder} alt={t.title} className="w-full h-auto object-cover hover:opacity-75 transition duration-300"/>
+                <img src={t.placeholder} alt={t.title} className="w-full h-48 object-cover hover:opacity-90 transition duration-300"/>
               </a>
               
-              <div className="p-4">
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+              <div className="p-5">
+                <span className="text-xs font-bold px-2 py-1 rounded-full bg-blue-100 text-blue-800">
                   {t.type}
                 </span>
-                <h3 className="font-semibold text-gray-800 mt-2">{t.title}</h3>
-                <p className="text-sm text-gray-600">{t.description}</p>
+                <h3 className="font-semibold text-gray-800 mt-2 mb-2 text-lg">{t.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{t.description}</p>
               </div>
             </div>
           ))}
@@ -304,8 +307,8 @@ const ReportViolationModal = ({ isOpen, onClose }) => {
         className="bg-white rounded-xl shadow-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-yellow-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <AlertTriangle className="w-7 h-7 mr-3 text-yellow-500" />
             Lapor Pelanggaran K3 (Anonim)
           </h2>
@@ -313,14 +316,14 @@ const ReportViolationModal = ({ isOpen, onClose }) => {
         </div>
         
         {submitStatus && (
-          <div className={`p-3 mb-4 rounded-lg text-sm font-medium ${submitStatus.includes('berhasil') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+          <div className={`p-3 mb-4 rounded-lg text-sm font-medium ${submitStatus.includes('berhasil') ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-red-100 text-red-700 border border-red-200'}`}>
             {submitStatus}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="reporterName" className="block text-sm font-medium text-gray-700 mb-1">Nama Pelapor (Opsional)</label>
+            <label htmlFor="reporterName" className="block text-sm font-medium text-gray-700 mb-2">Nama Pelapor (Opsional)</label>
             <input
               type="text"
               id="reporterName"
@@ -328,19 +331,19 @@ const ReportViolationModal = ({ isOpen, onClose }) => {
               value={formData.reporterName}
               onChange={handleInputChange}
               placeholder="Nama atau Inisial (Rahasia)"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
             />
           </div>
 
-          <div>
-            <label htmlFor="violationType" className="block text-sm font-medium text-gray-700 mb-1">Jenis Pelanggaran <span className="text-red-500">*</span></label>
+            <div>
+            <label htmlFor="violationType" className="block text-sm font-medium text-gray-700 mb-2">Jenis Pelanggaran <span className="text-red-500">*</span></label>
             <select
               id="violationType"
               name="violationType"
               value={formData.violationType}
               onChange={handleInputChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150 bg-white"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150 bg-white"
             >
               {violationOptions.map(option => (
                 <option key={option} value={option === violationOptions[0] ? "" : option} disabled={option === violationOptions[0]}>{option}</option>
@@ -349,22 +352,22 @@ const ReportViolationModal = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Deskripsi Detail Pelanggaran <span className="text-red-500">*</span></label>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">Deskripsi Detail Pelanggaran <span className="text-red-500">*</span></label>
             <textarea
               id="description"
               name="description"
-              rows="3"
+              rows="4"
               value={formData.description}
               onChange={handleInputChange}
               placeholder="Jelaskan apa, di mana, dan kapan pelanggaran terjadi. (Contoh: Karyawan X melepas helm di Area Produksi Lantai 3 pukul 14:00)"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150"
             ></textarea>
           </div>
 
           <div>
-            <label htmlFor="photoFile" className="block text-sm font-medium text-gray-700 mb-1">Unggah Foto Bukti (Maks. 5MB) <span className="text-red-500">*</span></label>
-            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-yellow-400 transition duration-150 cursor-pointer">
+            <label htmlFor="photoFile" className="block text-sm font-medium text-gray-700 mb-2">Unggah Foto Bukti (Maks. 5MB) <span className="text-red-500">*</span></label>
+            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-yellow-400 transition duration-150 cursor-pointer bg-gray-50">
               <label htmlFor="photoFileInput" className="text-center cursor-pointer">
                 <Upload className="mx-auto h-8 w-8 text-gray-400" />
                 <div className="text-sm text-gray-600 mt-2">
@@ -392,7 +395,7 @@ const ReportViolationModal = ({ isOpen, onClose }) => {
           <button
             type="submit"
             disabled={!isFormValid}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 transition duration-150"
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 transition duration-150"
           >
             Kirim Laporan
           </button>
@@ -414,19 +417,19 @@ const APDModal = ({ isOpen, onClose }) => {
     { 
       area: "Area Produksi Pangan Sensitif", 
       description: "Area yang bersentuhan langsung dengan bahan baku/produk, memerlukan standar hygiene pangan tertinggi.",
-      color: "bg-orange-100 border-orange-400",
+      color: "bg-orange-50 border-orange-500",
       apdList: ["Hairnet (Penutup Kepala)", "Masker (Penutup Mulut dan Hidung)", "Sarung Tangan Steril (Food Grade)", "Seragam Putih/Hijau Bersih", "Sepatu Safety Non-Slip"],
     },
     { 
       area: "Area Gudang & Loading Dock", 
       description: "Area mobilisasi barang dan risiko benturan, kejutan listrik, atau jatuhan benda berat.",
-      color: "bg-blue-100 border-blue-400",
+      color: "bg-blue-50 border-blue-500",
       apdList: ["Helm Proyek (Hard Hat)", "Rompi Reflektif (High Visibility Vest)", "Sepatu Safety dengan Pelindung Baja", "Sarung Tangan Kerja (Untuk Handling Barang)"],
     },
     { 
       area: "Area Mesin Berat & Bengkel", 
       description: "Area dengan kebisingan tinggi, percikan, dan potensi cedera mekanik/panas.",
-      color: "bg-red-100 border-red-400",
+      color: "bg-red-50 border-red-500",
       apdList: ["Earplug / Earmuff (Perlindungan Pendengaran)", "Kacamata Safety (Pelindung Mata)", "Sepatu Safety dengan Pelindung Baja", "Sarung Tangan Khusus (Anti-gesek/panas)"],
     },
   ];
@@ -437,22 +440,22 @@ const APDModal = ({ isOpen, onClose }) => {
         className="bg-white rounded-xl shadow-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-orange-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <HardHat className="w-7 h-7 mr-3 text-orange-500" />
             Peralatan Pelindung Diri (APD) Wajib
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
         </div>
 
-        <p className="text-lg text-gray-700 mb-8 font-semibold text-center">
+        <p className="text-lg text-gray-700 mb-8 font-medium text-center">
           Pastikan Anda menggunakan APD yang sesuai sebelum memasuki area kerja tertentu.
         </p>
 
         <div className="space-y-6">
           {apdLocations.map((loc, index) => (
-            <div key={index} className={`p-5 rounded-xl border-l-4 ${loc.color} shadow-lg transition duration-200 hover:shadow-xl`}>
-              <h3 className="font-bold text-xl text-gray-800 flex items-center mb-2">
+            <div key={index} className={`p-6 rounded-xl border-l-4 ${loc.color} shadow-lg transition duration-200 hover:shadow-xl`}>
+              <h3 className="font-bold text-xl text-gray-800 flex items-center mb-3">
                 <span className="text-orange-600 mr-2">
                   <HardHat className="w-5 h-5" /> 
                 </span>
@@ -462,7 +465,7 @@ const APDModal = ({ isOpen, onClose }) => {
               
               <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
                 {loc.apdList.map((apd, i) => (
-                  <li key={i} className="flex items-center text-sm font-medium text-gray-700 bg-white p-2 rounded-lg border border-gray-100">
+                  <li key={i} className="flex items-center text-sm font-medium text-gray-700 bg-white p-3 rounded-lg border border-gray-200">
                     <CheckCircle className="w-4 h-4 text-emerald-500 mr-2 flex-shrink-0" />
                     {apd}
                   </li>
@@ -471,7 +474,7 @@ const APDModal = ({ isOpen, onClose }) => {
             </div>
           ))}
         </div>
-        <div className="mt-8 pt-4 border-t text-center">
+        <div className="mt-8 pt-6 border-t text-center bg-gray-50 rounded-lg p-4">
           <p className="text-sm font-medium text-gray-600">APD dapat diambil di pos kontrol masing-masing area atau di Pusat Logistik K3.</p>
         </div>
       </div>
@@ -524,8 +527,8 @@ const UUSelectionModal = ({ isOpen, onClose, onSelectUU }) => {
         className="bg-white rounded-xl shadow-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
-          <h2 className="text-2xl font-bold text-emerald-600 flex items-center">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
             <FileText className="w-7 h-7 mr-3 text-emerald-500" />
             Pilih Undang-Undang Perusahaan Pangan
           </h2>
@@ -534,7 +537,7 @@ const UUSelectionModal = ({ isOpen, onClose, onSelectUU }) => {
           </button>
         </div>
 
-        <p className="text-lg text-gray-700 mb-8 font-semibold text-center">
+        <p className="text-lg text-gray-700 mb-8 font-medium text-center">
           Pilih salah satu Undang-Undang di bawah ini untuk melihat detail dan dokumen lengkapnya.
         </p>
 
@@ -552,7 +555,7 @@ const UUSelectionModal = ({ isOpen, onClose, onSelectUU }) => {
                   <p className="text-sm font-medium text-white/90">{uu.subtitle}</p>
                 </div>
               </div>
-              <p className="text-sm text-white/80 mb-4">{uu.description}</p>
+              <p className="text-sm text-white/80 mb-4 leading-relaxed">{uu.description}</p>
               <div className="flex justify-between items-center">
                 <span className="text-xs bg-white/20 px-2 py-1 rounded">Klik untuk detail</span>
                 <span className="text-xs bg-white/20 px-2 py-1 rounded">PDF Available</span>
@@ -614,7 +617,7 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
         className="bg-white rounded-xl shadow-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={e => e.stopPropagation()} 
       >
-        <div className="flex justify-between items-start mb-6 border-b pb-3">
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
           <div className="flex items-center">
             <button 
               onClick={onBack}
@@ -625,7 +628,7 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
               </svg>
             </button>
             <div>
-              <h2 className="text-2xl font-bold text-emerald-600 flex items-center">
+              <h2 className="text-2xl font-bold text-gray-800 flex items-center">
                 <FileText className="w-7 h-7 mr-3 text-emerald-500" />
                 {selectedUU.title}
               </h2>
@@ -638,7 +641,7 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
         </div>
 
         <div className="mb-6">
-          <p className="text-lg text-gray-700 font-semibold mb-4">
+          <p className="text-lg text-gray-700 font-medium mb-4 leading-relaxed">
             {selectedUU.description}
           </p>
           
@@ -647,7 +650,7 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
               href={selectedUU.pdfFile} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 shadow-md"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -664,7 +667,7 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
             {summary.map((item, index) => (
               <div key={index} className="p-4 bg-white rounded-lg border-l-4 border-emerald-500">
                 <h4 className="font-semibold text-gray-800 mb-2">{item.bab} - {item.title}</h4>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -679,6 +682,58 @@ const UUDetailModal = ({ isOpen, onClose, selectedUU, onBack }) => {
             Undang-Undang ini wajib dipatuhi oleh semua pelaku usaha dalam menjalankan kegiatan usahanya.
             Pelanggaran terhadap ketentuan undang-undang dapat dikenai sanksi administratif dan/atau pidana.
           </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 8. Modal P3K / First Aid (Merah/Putih - Plus)
+const FirstAidModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  const firstAidSteps = [
+    { type: "Luka Sayat Minor", action: "Bersihkan luka dengan air mengalir dan sabun. Keringkan, oleskan antiseptik, lalu tutup dengan plester steril.", iconColor: "text-blue-500" },
+    { type: "Luka Bakar Ringan", action: "Dinginkan area luka dengan air mengalir (bukan es) selama 10-15 menit. Tutup longgar dengan kain steril. Jangan pecahkan gelembung.", iconColor: "text-red-500" },
+    { type: "Keseleo/Tersandung", action: "Lakukan prosedur RICE (Rest, Ice, Compression, Elevation). Istirahatkan, kompres es, balut, dan angkat kaki lebih tinggi.", iconColor: "text-orange-500" },
+    { type: "Mata Kena Debu/Kimia", action: "Segera bilas mata dengan air mengalir minimal 15-20 menit. JANGAN digosok. Segera cari bantuan medis K3 setelah dibilas.", iconColor: "text-yellow-500" },
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1000] p-4" onClick={onClose}>
+      <div 
+        className="bg-white rounded-xl shadow-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+        onClick={e => e.stopPropagation()} 
+      >
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+            <Plus className="w-7 h-7 mr-3 text-red-500 stroke-[3px]" />
+            Prosedur Pertolongan Pertama (P3K)
+          </h2>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-800 transition duration-150"><X className="w-6 h-6"/></button>
+        </div>
+        
+        <p className="text-lg text-gray-700 mb-8 font-medium text-center">
+          Tindakan cepat dan tepat sangat penting dalam **menyelamatkan nyawa dan meminimalkan cedera**.
+        </p>
+
+        <div className="space-y-4">
+          {firstAidSteps.map((item, index) => (
+            <div key={index} className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+              <h3 className="font-bold text-lg text-gray-800 flex items-center mb-2">
+                <AlertTriangle className={`w-5 h-5 mr-2 ${item.iconColor}`} /> {item.type}
+              </h3>
+              <p className="text-sm text-gray-600 pl-7 leading-relaxed">{item.action}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-8 pt-6 border-t text-center bg-red-50 p-4 rounded-lg border border-red-200">
+          <p className="text-sm font-medium text-red-800 mb-2 flex items-center justify-center">
+            <Zap className="w-5 h-5 mr-2 text-red-600"/>
+            Setelah P3K, segera hubungi **Tim Medis K3** untuk penanganan lebih lanjut!
+          </p>
+          <p className="text-3xl font-bold text-red-700">119</p>
         </div>
       </div>
     </div>
@@ -704,6 +759,7 @@ const App = () => {
   const [isEducationModalOpen, setIsEducationModalOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isAPDModalOpen, setIsAPDModalOpen] = useState(false);
+  const [isFirstAidModalOpen, setIsFirstAidModalOpen] = useState(false);
   
   // State baru untuk modal UU
   const [isUUSelectionModalOpen, setIsUUSelectionModalOpen] = useState(false);
@@ -713,39 +769,39 @@ const App = () => {
   // Data untuk Area Fokus K3
   const focusAreas = [
     {
-      icon: <AlertTriangle className="w-8 h-8 text-white" />,
-      title: "Lapor Pelanggaran K3",
-      description: "Gunakan jalur rahasia ini untuk melaporkan tindakan atau kondisi tidak aman. (Klik untuk Lapor)",
-      color: "bg-yellow-600 hover:bg-yellow-700",
-      action: () => setIsReportModalOpen(true)
-    },
-    {
       icon: <HardHat className="w-8 h-8 text-white" />,
       title: "Info APD Wajib",
-      description: "Daftar Peralatan Pelindung Diri (APD) dan lokasi wajib penggunaannya. (Klik untuk detail)",
+      description: "Daftar Peralatan Pelindung Diri (APD) dan lokasi wajib penggunaannya.",
       color: "bg-orange-600 hover:bg-orange-700", 
       action: () => setIsAPDModalOpen(true)
     },
     {
       icon: <FileText className="w-8 h-8 text-white" />,
       title: "UU Perusahaan Pangan",
-      description: "Peraturan Hukum Undang-undang Perusahaan Pangan (Klik untuk melihat)",
+      description: "Peraturan Hukum Undang-undang Perusahaan Pangan",
       color: "bg-emerald-600 hover:bg-emerald-700",
       action: () => setIsUUSelectionModalOpen(true)
     },
     {
       icon: <Users className="w-8 h-8 text-white" />,
       title: "Edukasi & Pelatihan",
-      description: "Video Edukasi Pelatihan K3. (Klik untuk melihat)",
+      description: "Video Edukasi Pelatihan K3",
       color: "bg-blue-600 hover:bg-blue-700",
       action: () => setIsEducationModalOpen(true)
     },
     {
       icon: <Zap className="w-8 h-8 text-white" />,
       title: "Tanggap Darurat",
-      description: "Prosedur penanganan cepat dan efektif untuk kebakaran, bencana alam, dan kecelakaan kerja. (Klik untuk detail)",
+      description: "Prosedur penanganan cepat untuk kebakaran, bencana alam, dan kecelakaan kerja.",
       color: "bg-red-600 hover:bg-red-700",
       action: () => setIsEmergencyModalOpen(true)
+    },
+    {
+      icon: <Plus className="w-8 h-8 text-white stroke-[3px]" />,
+      title: "Prosedur P3K",
+      description: "Langkah-langkah Pertolongan Pertama pada Kecelakaan ringan.",
+      color: "bg-purple-600 hover:bg-purple-700",
+      action: () => setIsFirstAidModalOpen(true)
     },
   ];
 
@@ -794,51 +850,52 @@ const App = () => {
     <div className="min-h-screen flex flex-col bg-gray-50 font-inter overflow-x-hidden">
       
       {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-gray-900 shadow-xl w-full relative"> 
+      <header className="sticky top-0 z-50 bg-white shadow-lg w-full border-b border-gray-200"> 
         <Container> 
           <div className="py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-emerald-400">
-              <a href="https://www.siantartop.co.id/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+            <div className="text-2xl font-bold text-gray-800">
+              <a href="https://www.siantartop.co.id/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3">
                 <img
                   src="assets/siantartop.png" 
                   alt="Siantar Top Logo" 
-                  className='h-10 w-auto'
+                  className='h-12 w-auto'
                 />
+                <div className="hidden md:block border-l border-gray-300 h-8"></div>
+                <span className="hidden md:block text-sm font-normal text-gray-600">Divisi K3</span>
               </a>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <a href="#home" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
-              <a href="#pillars" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Pilar K3</a>
-              <a href="#commitment" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Komitmen</a>
-              <a href="#contact" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Kontak</a>
-              <a href="#about" className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium" rel='AboutSection.jsx'>Tentang</a>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#home" className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium">Beranda</a>
+              <a href="#pillars" className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium">Pilar K3</a>
+              <a href="#report" className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium">Lapor K3</a>
+              <a href="#commitment" className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium">Komitmen</a>
+              <a href="#contact" className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium">Kontak</a>
             </nav>
             <div className="md:hidden">
               <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle state saat diklik
-                className="text-gray-300 hover:text-emerald-400 focus:outline-none"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-700 hover:text-emerald-600 focus:outline-none p-2"
                 aria-label="Toggle menu"
               >
-                {/* Ganti ikon berdasarkan state */}
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
-          {/* Tampil/sembunyi dropdown */}
-          <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-full right-2 mt-2 w-56 bg-gray-900 rounded-lg shadow-xl border border-gray-700 mg-right-4`}>
-            <div className="flex flex-col items-center space-y-4 py-6">
-              <a href="#home" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Beranda</a>
-              <a href="#pillars" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Pilar K3</a>
-              <a href="#commitment" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Komitmen</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium">Kontak</a>
-              <a href="#about" onClick={() => setIsMenuOpen(false)} className="text-gray-300 hover:text-emerald-400 transition duration-300 font-medium" rel='AboutSection.jsx'>Tentang</a>
+          {/* Mobile Menu */}
+          <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-full left-0 right-0 mt-2 w-full bg-white shadow-xl border-b border-gray-200`}>
+            <div className="flex flex-col space-y-0 py-4">
+              <a href="#home" onClick={() => setIsMenuOpen(false)} className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium">Beranda</a>
+              <a href="#pillars" onClick={() => setIsMenuOpen(false)} className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium">Pilar K3</a>
+              <a href="#report" onClick={() => setIsMenuOpen(false)} className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium">Lapor K3</a>
+              <a href="#commitment" onClick={() => setIsMenuOpen(false)} className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium">Komitmen</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium">Kontak</a>
             </div>
           </div>
         </Container>
       </header>
 
       {/* HERO SECTION */}
-      <section id="home" className="bg-gray-900 text-white w-full shadow-2xl">
+      <section id="home" className="bg-gray-900 text-white w-full">
         <div>
           <Swiper
             modules={[Navigation, EffectFade, Autoplay]}
@@ -852,26 +909,25 @@ const App = () => {
             loop={true}
             className="mySwiper"
             fadeEffect={{ crossFade: true }}
-            style={{ overflow: 'visible' }}
           >
         {/* SLIDE 1 */}
         <SwiperSlide>
-          <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+          <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
             style={{ backgroundImage: "url('/assets/tentangsiantartop.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
               <div className="relative z-10">
                 <Shield className="w-20 h-20 mx-auto mb-8 text-emerald-400" />
-                <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                   Keselamatan Kerja,{" "}
                 <span className="text-emerald-400">Kualitas Utama</span>
                 </h1>
-                <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+                <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300 leading-relaxed">
                   Komitmen Siantar Top: Menciptakan lingkungan kerja yang aman, sehat,
                   dan produktif bagi setiap insan.
                 </p>
                 <a
                   href="#pillars"
-                  className="inline-block px-12 py-4 bg-red-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-4 ring-red-400 ring-opacity-50"
+                  className="inline-block px-10 py-4 bg-red-600 text-white font-bold rounded-lg text-lg shadow-xl hover:bg-red-700 transition duration-300 transform hover:scale-105"
                 >
                   Jelajahi Pilar K3 Kami
                 </a>
@@ -881,98 +937,124 @@ const App = () => {
 
         {/* SLIDE 2 */}
         <SwiperSlide>
-        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
         style={{ backgroundImage: "url('/assets/goriorio.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
             <div className="relative z-10">
             <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 Lingkungan Aman,{" "}
                 <span className="text-yellow-400">Produktivitas Maksimal</span>
               </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300 leading-relaxed">
                 Dengan penerapan sistem K3 yang terstandar, kami memastikan setiap
                 langkah kerja penuh kehati-hatian dan tanggung jawab.
               </p>
               <a
-                href="#programs"
-                className="inline-block px-12 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-xl shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105 ring-4 ring-yellow-300 ring-opacity-50"
+                href="#report"
+                className="inline-block px-10 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-lg shadow-xl hover:bg-yellow-400 transition duration-300 transform hover:scale-105"
               >
-                Lihat Program Kami
+                Laporkan Kondisi Berbahaya
               </a>
             </div>
           </div>
-        </SwiperSlide>
-
+        </SwiperSlide>
 
         {/* SLIDE 3 */}
         <SwiperSlide>
-        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
+        <div className="text-center py-24 md:py-40 bg-cover bg-center bg-no-repeat relative" 
         style={{ backgroundImage: "url('/assets/dharmabakti.jpg')"}}>
-            <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
             <div className="relative z-10">
-            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-snug tracking-tight">
-                Bersama Membangun{" "}
-                <span className="text-blue-400">Budaya Keselamatan</span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300">
-                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
+            <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Bersama Membangun{" "}
+                <span className="text-blue-400">Budaya Keselamatan</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light mb-12 max-w-4xl mx-auto text-gray-300 leading-relaxed">
+                Partisipasi aktif seluruh karyawan menjadi fondasi utama dalam
                 menciptakan lingkungan kerja yang selamat dan berkualitas.
-              </p>
-              <a
-                href="#contact"
-                className="inline-block px-12 py-4 bg-blue-600 text-white font-bold rounded-lg text-xl shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 ring-4 ring-blue-400 ring-opacity-50"
-              >
-                Hubungi Tim K3
-              </a>
-            </div>
+              </p>
+              <a
+                href="#contact"
+                className="inline-block px-10 py-4 bg-blue-600 text-white font-bold rounded-lg text-lg shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+              >
+                Hubungi Tim K3
+              </a>
+            </div>
         </div>
-        </SwiperSlide>
-      </Swiper>
-    </div>
-  </section>
-
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
 
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
         <Container>
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">
-            Lima Pilar Utama K3
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Kami membangun budaya keselamatan yang kuat melalui lima fokus area inti yang berkelanjutan.
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+              Lima Pilar Utama K3
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Kami membangun budaya keselamatan yang kuat melalui lima fokus area inti yang berkelanjutan.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {focusAreas.map((area, index) => (
               <div 
                 key={index} 
                 onClick={area.action} 
-                className={`p-8 rounded-xl shadow-2xl ${area.color} text-white transition duration-500 ease-in-out cursor-pointer transform hover:scale-[1.02]`}
+                className={`p-6 rounded-xl shadow-lg ${area.color} text-white transition duration-300 ease-in-out cursor-pointer transform hover:scale-[1.03] hover:shadow-xl flex flex-col items-center text-center h-full`}
               >
                 <div className="flex justify-center mb-4">
                   <div className="p-3 bg-white/20 rounded-full">
                     {area.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-center">{area.title}</h3>
-                <p className="text-center text-sm text-gray-100">{area.description}</p>
+                <h3 className="text-lg font-semibold mb-3">{area.title}</h3>
+                <p className="text-sm text-gray-100 leading-relaxed flex-grow">{area.description}</p>
+                <div className="mt-4 text-xs bg-white/20 px-2 py-1 rounded-full">
+                  Klik untuk detail
+                </div>
               </div>
             ))}
           </div>
         </Container>
       </section>
+      
+      {/* NEW REPORT VIOLATION SECTION */}
+      <section id="report" className="py-16 bg-yellow-50 w-full border-y border-yellow-200">
+        <Container>
+          <div className="text-center p-8 rounded-xl border-2 border-yellow-300 bg-white shadow-lg">
+            <AlertTriangle className="w-16 h-16 mx-auto mb-4 text-yellow-600" />
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+              LAPOR PELANGGARAN K3 (Jalur Anonim)
+            </h3>
+            <p className="text-lg text-gray-600 mb-6 max-w-3xl mx-auto leading-relaxed">
+              Jadilah mata dan telinga kami. Laporkan segera setiap tindakan atau kondisi yang
+              berpotensi menyebabkan bahaya. Identitas Anda dijamin <strong>RAHASIA</strong>.
+            </p>
+            <button 
+              onClick={() => setIsReportModalOpen(true)}
+              className="inline-flex items-center px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-400 transition duration-300 transform hover:scale-105"
+            >
+              <AlertTriangle className="w-6 h-6 mr-3"/>
+              Kirim Laporan Sekarang
+            </button>
+          </div>
+        </Container>
+      </section>
 
       {/* COMMITMENT SECTION */}
-      <section id="commitment" className="py-20 bg-blue-50 w-full">
+      <section id="commitment" className="py-20 bg-gray-50 w-full">
         <Container>
           <div className="md:flex md:items-center md:space-x-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h2 className="text-4xl font-bold mb-4 text-gray-800">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
                 Komitmen Kami Terhadap Zero Accident
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Siantar Top bertekad mencapai nihil kecelakaan melalui investasi berkelanjutan pada teknologi, prosedur, dan sumber daya manusia.
               </p>
               <ul className="space-y-4">
@@ -991,90 +1073,102 @@ const App = () => {
               </ul>
             </div>
             
-            {/* Mock Statistics Card */}
-            <div className="md:w-1/2 p-8 bg-blue-100 rounded-xl shadow-lg">
-              <div className="grid grid-cols-2 gap-6 text-center">
-                <div>
-                  <p className="text-5xl font-extrabold text-blue-700">365+</p>
-                  <p className="text-sm font-medium text-gray-600 mt-1">Hari Kerja Tanpa Kecelakaan Berat</p>
+            {/* Statistics Card */}
+            <div className="md:w-1/2">
+              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <div className="grid grid-cols-2 gap-8 text-center">
+                  <div className="p-4">
+                    <p className="text-4xl md:text-5xl font-bold text-emerald-600 mb-2">365+</p>
+                    <p className="text-sm font-medium text-gray-600">Hari Kerja Tanpa Kecelakaan Berat</p>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-4xl md:text-5xl font-bold text-emerald-600 mb-2">100%</p>
+                    <p className="text-sm font-medium text-gray-600">Kepatuhan Terhadap Standar ISO 45001</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-5xl font-extrabold text-blue-700">100%</p>
-                  <p className="text-sm font-medium text-gray-600 mt-1">Kepatuhan Terhadap Standar ISO 45001</p>
+                <div className="mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                  <p className="text-sm text-emerald-700 text-center">
+                    <strong>Target 2024:</strong> Zero Accident di semua area produksi
+                  </p>
                 </div>
+              </div>
             </div>
-            </div>
-
           </div>
         </Container>
       </section>
 
       {/* CALL TO ACTION / Safety Message Update */}
-      <section className="bg-emerald-500 py-12 w-full">
+      <section className="bg-emerald-600 py-12 w-full">
         <Container>
           <div className="text-center">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-bold text-white mb-4">
               Pesan Keselamatan Hari Ini
             </h3>
-            <p className="text-xl text-gray-800 font-medium mb-6 transition-opacity duration-300">{safetyMessage}</p>
+            <p className="text-xl text-white font-medium mb-6 transition-opacity duration-300 leading-relaxed">{safetyMessage}</p>
             <button 
               onClick={getRandomMessage}
               className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105"
             >
-              Pesan Keselamatan
+              Pesan Keselamatan Lainnya
             </button>
           </div>
         </Container>
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-gray-900 text-gray-300 py-10 mt-auto w-full">
+      <footer id="contact" className="bg-gray-800 text-gray-300 py-12 mt-auto w-full">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             
             {/* Company Info */}
-            <div>
-              <img src="assets/siantartop.png" alt="Siantar Top Logo" style={{ width: '200px', height: 'auto' }}/>
-              <p className="text-sm" style={{ marginTop: '20px' }}>
+            <div className="md:col-span-2">
+              <img src="assets/siantartop.png" alt="Siantar Top Logo" className="h-12 w-auto mb-4"/>
+              <p className="text-sm leading-relaxed mb-4">
                 Divisi Kesehatan & Keselamatan Kerja (K3)
                 <br/>
                 Jl. Raya Jati, Sidoarjo, Jawa Timur
+                <br/>
+                Komitmen terhadap keselamatan dan kesehatan kerja adalah prioritas utama kami.
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Akses Cepat</h4>
+              <h4 className="text-lg font-semibold mb-4 text-white">Akses Cepat</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#home" className="hover:text-emerald-400">Beranda</a></li>
-                <li><a href="#pillars" className="hover:text-emerald-400">Pilar K3</a></li>
-                <li><a href="#commitment" className="hover:text-emerald-400">Komitmen</a></li>
-              </ul>
-            </div>
-
-            {/* K3 Resources */}
-            <div>
-              <h4 className="text-lg font-semibold mb-4">K3 Sumber Daya</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-emerald-400">Prosedur Keamanan</a></li>
-                <li><a href="#" className="hover:text-emerald-400">Laporan Insiden</a></li>
-                <li><a href="#" className="hover:text-emerald-400">Nomor Darurat</a></li>
+                <li><a href="#home" className="hover:text-emerald-400 transition duration-200">Beranda</a></li>
+                <li><a href="#pillars" className="hover:text-emerald-400 transition duration-200">Pilar K3</a></li>
+                <li><a href="#report" className="hover:text-emerald-400 transition duration-200">Lapor K3</a></li>
+                <li><a href="#commitment" className="hover:text-emerald-400 transition duration-200">Komitmen</a></li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Hubungi Kami</h4>
-              <p className="text-sm">
-                Email: k3@siantartop.com
-                <br/>
-                Telp Darurat: (031) 123-456
-              </p>
+              <h4 className="text-lg font-semibold mb-4 text-white">Hubungi Kami</h4>
+              <div className="space-y-2 text-sm">
+                <p className="flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  k3@siantartop.com
+                </p>
+                <p className="flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  (031) 123-456
+                </p>
+                <p className="flex items-center text-red-300 font-medium mt-4">
+                  <Zap className="w-4 h-4 mr-2" />
+                  Darurat: 119
+                </p>
+              </div>
             </div>
           </div>
           
           <div className="mt-10 pt-6 border-t border-gray-700 text-center">
-            <p className="text-sm">&copy; {new Date().getFullYear()} Siantar Top K3 Division. All rights reserved.</p>
+            <p className="text-sm">&copy; {new Date().getFullYear()} Siantar Top - Divisi K3. All rights reserved.</p>
           </div>
         </Container>
       </footer>
@@ -1085,6 +1179,7 @@ const App = () => {
       <EducationModal isOpen={isEducationModalOpen} onClose={() => setIsEducationModalOpen(false)} />
       <ReportViolationModal isOpen={isReportModalOpen} onClose={() => setIsReportModalOpen(false)} />
       <APDModal isOpen={isAPDModalOpen} onClose={() => setIsAPDModalOpen(false)} />
+      <FirstAidModal isOpen={isFirstAidModalOpen} onClose={() => setIsFirstAidModalOpen(false)} />
       
       {/* Modal UU */}
       <UUSelectionModal 
