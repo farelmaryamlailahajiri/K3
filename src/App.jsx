@@ -98,6 +98,47 @@ const X = (props) => (
   </svg>
 );
 
+const EnvironmentBuilding = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 21h18V9l-9-6-9 6Z" />
+    <path d="M12 10c-2 0-4 2-4 4c0 3 4 6 4 6s4-3 4-6c0-2-2-4-4-4Z" />
+  </svg>
+);
+
+const ShieldCheckIcon = (props) => (
+  <svg 
+    {...props} 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none"
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor" 
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" 
+    />
+  </svg>
+);
+
+const InfoIcon = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
 // --- ICON BARU UNTUK LAPORAN ---
 const AlertTriangle = (props) => (
   <svg
@@ -1691,7 +1732,7 @@ const App = () => {
               >
                 <div className="absolute inset-0 bg-black bg-opacity-70"></div>
                 <div className="relative z-10">
-                  <Shield className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
+                  <EnvironmentBuilding className="w-20 h-20 mx-auto mb-8 text-yellow-400" />
                   <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                     Lingkungan Aman,{" "}
                     <span className="text-yellow-400">
@@ -1720,7 +1761,7 @@ const App = () => {
               >
                 <div className="absolute inset-0 bg-black bg-opacity-70"></div>
                 <div className="relative z-10">
-                  <Shield className="w-20 h-20 mx-auto mb-8 text-blue-400" />
+                  <Users className="w-20 h-20 mx-auto mb-8 text-blue-400" />
                   <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                     Bersama Membangun{" "}
                     <span className="text-blue-400">Budaya Keselamatan</span>
@@ -1743,6 +1784,40 @@ const App = () => {
         </div>
       </section>
 
+      {/* PROFILE SIANTAR TOP */}    
+      <section id="profile" className="bg-white py-20 md:py-28">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <div className="flex flex-col md:flex-row items-center gap-16 p-8">
+      
+            {/* Kolom Gambar */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/assets/favicon.png" 
+                alt="Gedung Perusahaan Siantar Top"
+                className="shadow-2xl w-80 h-auto object-cover rounded-xl transform hover:scale-105 transition duration-500"
+              />
+            </div>
+
+            {/* Kolom Teks */}
+            <div>
+              <p className="text-sm font-bold text-red-600 mb-2">TENTANG KAMI</p>
+              <h2 className="text-4xl font-bold text-slate-800 mb-4">
+                Inovasi Rasa, Kualitas Terjaga Sejak 1972
+              </h2>
+              <p className="text-gray-600 mb-4">
+                PT Siantar Top Tbk. adalah pelopor industri makanan ringan di Indonesia yang berkomitmen untuk menghadirkan produk berkualitas tinggi bagi konsumen. Sejak berdiri, kami terus berinovasi untuk menciptakan cita rasa yang digemari oleh semua kalangan.
+              </p>
+              <p className="text-gray-600 mb-6">
+                Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
+              </p>
+              <a href="#profil" className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300">
+                Profil Lebih Lengkap
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* PILLARS SECTION */}
       <section id="pillars" className="py-20 bg-white w-full">
         <Container>
@@ -1876,21 +1951,36 @@ const App = () => {
       </section>
 
       {/* CALL TO ACTION / Safety Message Update */}
-      <section className="bg-emerald-600 py-12 w-full">
+      <section className="bg-gradient-to-r from-emerald-500 to-teal-600 py-20 md:py-24 w-full">
         <Container>
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Pesan Keselamatan Hari Ini
-            </h3>
-            <p className="text-xl text-white font-medium mb-6 transition-opacity duration-300 leading-relaxed">
-              {safetyMessage}
-            </p>
-            <button
-              onClick={getRandomMessage}
-              className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105"
-            >
-              Pesan Keselamatan Lainnya
-            </button>
+          {/* Card Container with Glassmorphism Effect */}
+          <div className="relative bg-white/10 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-12 text-white">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+
+              {/* Kolom Ikon */}
+              <div className="md:col-span-1 flex justify-center">
+                <ShieldCheckIcon className="w-28 h-28 md:w-36 md:h-36 text-white opacity-90" />
+              </div>
+
+              {/* Kolom Teks & Tombol */}
+              <div className="md:col-span-2 text-center md:text-left">
+                <h3 className="text-2xl md:text-2xl font-extrabold mb-3">
+                  Pesan Keselamatan Hari Ini
+                </h3>
+                  <div className="flex items-center gap-3 bg-black/20 p-4 rounded-lg mb-6 transition-opacity duration-300 min-h-[60px]">
+                    <InfoIcon className="w-6 h-6 text-emerald-200 flex-shrink-0" />
+                      <p className="text-xl text-emerald-100 font-medium">
+                        {safetyMessage}
+                      </p>
+                  </div>
+                <button 
+                  onClick={getRandomMessage}
+                  className="px-8 py-3 bg-white text-emerald-600 font-bold rounded-lg shadow-md hover:bg-emerald-100 transition-transform duration-200 transform hover:scale-105 text-lg"
+                >
+                  Dapatkan Pesan Baru
+                </button>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
