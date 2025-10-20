@@ -1144,29 +1144,85 @@ const FirstAidModal = ({ isOpen, onClose }) => {
 
   const firstAidSteps = [
     {
-      type: "Luka Sayat Minor",
-      action:
-        "Bersihkan luka dengan air mengalir dan sabun. Keringkan, oleskan antiseptik, lalu tutup dengan plester steril.",
+      type: "Luka Sayat",
+      action: "Bersihkan luka dengan air mengalir. Keringkan, oleskan antiseptik, lalu tutup dengan plester steril.",
       iconColor: "text-blue-500",
+      videoUrl: "https://youtube.com/shorts/vcrRSVJscVk?si=VDXNbbTAY4DAGcFg",
+      detailedSteps: [
+        "Cuci tangan dengan sabun dan air mengalir sebelum menangani luka",
+        "Bersihkan luka dengan air mengalir selama 5-10 menit",
+        "Gunakan sabun antiseptik untuk membersihkan area sekitar luka",
+        "Keringkan dengan kain steril dengan menepuk-nepuk (jangan digosok)",
+        "Oleskan salep antiseptik seperti povidone-iodine",
+        "Tutup luka dengan plester steril atau perban",
+        "Ganti perban setiap hari atau jika basah/kotor"
+      ],
+      precautions: [
+        "Jangan gunakan alkohol langsung pada luka terbuka",
+        "Jika luka dalam atau berdarah banyak, segera cari bantuan medis",
+        "Perhatikan tanda-tanda infeksi: kemerahan, bengkak, nanah"
+      ]
     },
     {
       type: "Luka Bakar Ringan",
-      action:
-        "Dinginkan area luka dengan air mengalir (bukan es) selama 10-15 menit. Tutup longgar dengan kain steril. Jangan pecahkan gelembung.",
+      action: "Dinginkan area luka dengan air mengalir (bukan es) selama 10-15 menit. Tutup longgar dengan kain steril. Jangan pecahkan gelembung.",
       iconColor: "text-red-500",
+      videoUrl: "https://youtu.be/1ZRWfJJkxWs?si=o_fS5IvYxcSuOYCG",
+      detailedSteps: [
+        "Segera dinginkan luka dengan air mengalir suhu ruangan selama 10-15 menit",
+        "Jangan gunakan es, mentega, atau odol pada luka bakar",
+        "Lepaskan perhiasan atau pakaian ketat di sekitar area luka",
+        "Tutup luka dengan kain steril atau perban longgar",
+        "Jangan pecahkan gelembung/lepuh yang terbentuk",
+        "Berikan obat pereda nyeri jika diperlukan",
+        "Pantau tanda-tanda syok: pucat, lemas, berkeringat"
+      ],
+      precautions: [
+        "Luka bakar derajat 2 dan 3 memerlukan penanganan medis segera",
+        "Jangan mengoleskan pasta gigi, mentega, atau minyak",
+        "Jika luka bakar mengenai wajah, tangan, atau alat kelamin, segera ke dokter"
+      ]
     },
     {
       type: "Keseleo/Tersandung",
-      action:
-        "Lakukan prosedur RICE (Rest, Ice, Compression, Elevation). Istirahatkan, kompres es, balut, dan angkat kaki lebih tinggi.",
+      action: "Lakukan prosedur RICE (Rest, Ice, Compression, Elevation). Istirahatkan, kompres es, balut, dan angkat kaki lebih tinggi.",
       iconColor: "text-orange-500",
+      videoUrl: "https://youtu.be/8ITlpKUPB54?si=6UexE0RLNLNWTm0Y",
+      detailedSteps: [
+        "REST: Istirahatkan bagian yang cedera, hindari beban berat",
+        "ICE: Kompres dengan es yang dibungkus kain selama 15-20 menit setiap 2-3 jam",
+        "COMPRESSION: Balut dengan perban elastis (jangan terlalu ketat)",
+        "ELEVATION: Angkat bagian yang cedera lebih tinggi dari jantung",
+        "Gunakan tongkat penyangga jika cedera pada kaki",
+        "Berikan obat anti-inflamasi jika diperlukan",
+        "Lakukan peregangan ringan setelah 48 jam"
+      ],
+      precautions: [
+        "Jangan memberikan pijatan pada area yang bengkak",
+        "Jika tidak membaik dalam 2-3 hari, konsultasi ke dokter",
+        "Hindari aktivitas berat sampai benar-benar pulih"
+      ]
     },
     {
       type: "Mata Kena Debu/Kimia",
-      action:
-        "Segera bilas mata dengan air mengalir minimal 15-20 menit. JANGAN digosok. Segera cari bantuan medis K3 setelah dibilas.",
+      action: "Segera bilas mata dengan air mengalir minimal 15-20 menit. JANGAN digosok. Segera cari bantuan medis K3 setelah dibilas.",
       iconColor: "text-yellow-500",
-    },
+      videoUrl: "https://youtube.com/shorts/7aPzxeAdAVQ?si=f7zIq6vUIJCuRHHi",
+      detailedSteps: [
+        "Cuci tangan sebelum menangani mata",
+        "Miringkan kepala ke sisi mata yang terkena",
+        "Bilas mata dengan air mengalir bersih selama 15-20 menit",
+        "Gunakan gelas bilas mata atau air mengalir dari keran",
+        "Jangan menggosok mata yang terkena",
+        "Jika memakai lensa kontak, lepaskan setelah pembilasan",
+        "Tutup mata dengan kain steril longgar"
+      ],
+      precautions: [
+        "Untuk bahan kimia, bilas minimal 20-30 menit",
+        "Jangan menggunakan obat tetes mata tanpa resep dokter",
+        "Segera cari bantuan medis untuk bahan kimia korosif"
+      ]
+    }
   ];
 
   return (
@@ -1175,7 +1231,7 @@ const FirstAidModal = ({ isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+        className="bg-white rounded-xl shadow-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-start mb-6 border-b pb-4">
@@ -1192,34 +1248,169 @@ const FirstAidModal = ({ isOpen, onClose }) => {
         </div>
 
         <p className="text-lg text-gray-700 mb-8 font-medium text-center">
-          Tindakan cepat dan tepat sangat penting dalam **menyelamatkan nyawa
-          dan meminimalkan cedera**.
+          Tindakan cepat dan tepat sangat penting dalam <strong>menyelamatkan nyawa dan meminimalkan cedera</strong>.
         </p>
 
         <div className="space-y-4">
           {firstAidSteps.map((item, index) => (
-            <div
-              key={index}
-              className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500"
-            >
-              <h3 className="font-bold text-lg text-gray-800 flex items-center mb-2">
-                <AlertTriangle className={`w-5 h-5 mr-2 ${item.iconColor}`} />{" "}
-                {item.type}
-              </h3>
-              <p className="text-sm text-gray-600 pl-7 leading-relaxed">
-                {item.action}
-              </p>
-            </div>
+            <FirstAidItem key={index} item={item} />
           ))}
         </div>
 
         <div className="mt-8 pt-6 border-t text-center bg-red-50 p-4 rounded-lg border border-red-200">
           <p className="text-sm font-medium text-red-800 mb-2 flex items-center justify-center">
             <Zap className="w-5 h-5 mr-2 text-red-600" />
-            Setelah P3K, segera hubungi **Tim Medis K3** untuk penanganan lebih
-            lanjut!
+            Setelah P3K, segera hubungi <strong>Tim Medis K3</strong> untuk penanganan lebih lanjut!
           </p>
           <p className="text-3xl font-bold text-red-700">119</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Komponen untuk setiap item P3K dengan modal detail
+const FirstAidItem = ({ item }) => {
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  return (
+    <>
+      <div
+        onClick={() => setIsDetailOpen(true)}
+        className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 cursor-pointer transition duration-200 hover:bg-red-100 hover:border-red-600"
+      >
+        <h3 className="font-bold text-lg text-gray-800 flex items-center mb-2">
+          <AlertTriangle className={`w-5 h-5 mr-2 ${item.iconColor}`} />
+          {item.type}
+        </h3>
+        <p className="text-sm text-gray-600 pl-7 leading-relaxed">
+          {item.action}
+        </p>
+        <div className="flex justify-between items-center mt-3 pl-7">
+          <span className="text-xs text-red-600 font-medium">Klik untuk detail lengkap</span>
+          <span className="text-xs bg-red-200 text-red-700 px-2 py-1 rounded-full">Video & Panduan</span>
+        </div>
+      </div>
+
+      {/* Modal Detail untuk setiap jenis luka */}
+      {isDetailOpen && (
+        <FirstAidDetailModal 
+          item={item} 
+          onClose={() => setIsDetailOpen(false)} 
+        />
+      )}
+    </>
+  );
+};
+
+// Modal Detail untuk setiap jenis P3K
+const FirstAidDetailModal = ({ item, onClose }) => {
+  return (
+    <div
+      className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[1100] p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-xl shadow-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 transform transition-all duration-300 scale-100 opacity-100"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-start mb-6 border-b pb-4">
+          <div className="flex items-center">
+            <AlertTriangle className={`w-7 h-7 mr-3 ${item.iconColor}`} />
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">{item.type}</h2>
+              <p className="text-gray-600">{item.action}</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-800 transition duration-150"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Video Section */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Video Tutorial Penanganan
+            </h3>
+            <div className="bg-gray-100 rounded-lg p-4 aspect-video flex items-center justify-center">
+              <a
+                href={item.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center text-gray-600 hover:text-red-600 transition duration-200"
+              >
+                <svg className="w-16 h-16 mx-auto mb-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <p className="font-medium">Tonton Video Tutorial</p>
+                <p className="text-sm">(Buka di YouTube)</p>
+              </a>
+            </div>
+            <p className="text-xs text-gray-500 mt-2 text-center">
+              Video menunjukkan demonstrasi penanganan yang benar
+            </p>
+          </div>
+
+          {/* Detailed Steps Section */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
+              Langkah-langkah Detail
+            </h3>
+            <div className="space-y-3">
+              {item.detailedSteps.map((step, index) => (
+                <div key={index} className="flex items-start">
+                  <span className="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">
+                    {index + 1}
+                  </span>
+                  <p className="text-sm text-gray-700 leading-relaxed">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Precautions Section */}
+        <div className="mt-8 pt-6 border-t">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <AlertTriangle className="w-5 h-5 mr-2 text-yellow-500" />
+            Hal yang Harus Dihindari
+          </h3>
+          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+            <ul className="space-y-2">
+              {item.precautions.map((precaution, index) => (
+                <li key={index} className="flex items-start text-sm text-yellow-800">
+                  <X className="w-4 h-4 mr-2 mt-0.5 text-yellow-600 flex-shrink-0" />
+                  {precaution}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Emergency Contact */}
+        <div className="mt-6 p-4 bg-red-50 rounded-lg border border-red-200">
+          <h4 className="font-semibold text-red-800 mb-2 flex items-center justify-center">
+            <Zap className="w-5 h-5 mr-2 text-red-600" />
+            Dalam Keadaan Darurat, Segera Hubungi:
+          </h4>
+          <p className="text-2xl font-bold text-red-700 text-center">119 (Tim Medis K3)</p>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={onClose}
+            className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200"
+          >
+            Tutup
+          </button>
         </div>
       </div>
     </div>
