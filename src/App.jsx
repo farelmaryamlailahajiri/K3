@@ -1785,7 +1785,7 @@ const App = () => {
       </section>
 
       {/* PROFILE SIANTAR TOP */}    
-      <section id="profile" className="bg-white py-20 md:py-28">
+      <section id="profile" className="bg-white py-20 md:py-10">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col md:flex-row items-center gap-16 p-8">
       
@@ -1810,16 +1810,16 @@ const App = () => {
               <p className="text-gray-600 mb-6">
                 Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
               </p>
-              <a href="#profil" className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300">
+              {/* <a href="#profil" className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300">
                 Profil Lebih Lengkap
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
       </section>
       
       {/* PILLARS SECTION */}
-      <section id="pillars" className="py-20 bg-white w-full">
+      <section id="pillars" className="py-5 bg-white w-full">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
