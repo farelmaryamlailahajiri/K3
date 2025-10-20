@@ -3,9 +3,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { Routes, Route } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
+import AboutSection from './components/AboutSection';
 
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
@@ -1810,9 +1812,12 @@ const App = () => {
               <p className="text-gray-600 mb-6">
                 Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
               </p>
-              {/* <a href="#profil" className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300">
+              {/* <Link 
+                to="/profil-lengkap" 
+                className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300"
+              >
                 Profil Lebih Lengkap
-              </a> */}
+              </Link> */}
             </div>
           </div>
         </div>
