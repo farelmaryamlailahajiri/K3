@@ -1940,7 +1940,7 @@ const App = () => {
                 </div>
                 <div className="mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
                   <p className="text-sm text-emerald-700 text-center">
-                    <strong>Target 2024:</strong> Zero Accident di semua area
+                    <strong>Target 2025:</strong> Zero Accident di semua area
                     produksi
                   </p>
                 </div>
