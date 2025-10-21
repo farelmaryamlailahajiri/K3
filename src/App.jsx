@@ -1601,6 +1601,12 @@ function HomePage() {
                 Beranda
               </a>
               <a
+                href="#about"
+                className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium"
+              >
+                Tentang
+              </a>
+              <a
                 href="#pillars"
                 className="text-gray-700 hover:text-emerald-600 transition duration-300 font-medium"
               >
@@ -1650,6 +1656,13 @@ function HomePage() {
                 className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium"
               >
                 Beranda
+              </a>
+              <a
+                href="#about"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition duration-300 font-medium"
+              >
+                Tentang
               </a>
               <a
                 href="#pillars"
@@ -1804,7 +1817,7 @@ function HomePage() {
             </div>
 
             {/* Kolom Teks */}
-            <div>
+            <div id="about">
               <p className="text-sm font-bold text-red-600 mb-2">TENTANG KAMI</p>
               <h2 className="text-4xl font-bold text-slate-800 mb-4">
                 Inovasi Rasa, Kualitas Terjaga Sejak 1972
@@ -2029,6 +2042,14 @@ function HomePage() {
                     className="hover:text-emerald-400 transition duration-200"
                   >
                     Beranda
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    className="hover:text-emerald-400 transition duration-200"
+                  >
+                    Tentang
                   </a>
                 </li>
                 <li>

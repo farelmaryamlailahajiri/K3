@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 function AboutSection() {
   return (
@@ -34,6 +42,85 @@ function AboutSection() {
       {/* Konten Detail */}
       <section className="py-16">
         <div className="container mx-auto px-6 max-w-4xl">
+          {/* IMAGE SLIDER */}
+    <div className="mb-8 rounded-xl overflow-hidden shadow-2xl">
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        effect="fade"
+        navigation
+        pagination={{ 
+          clickable: true,
+          dynamicBullets: true 
+        }}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        className="aboutContentSwiper"
+        fadeEffect={{ crossFade: true }}
+      >
+        {/* SLIDE 1 */}
+        <SwiperSlide>
+          <div className="relative h-[300px] md:h-[400px]">
+            <img 
+              src="/assets/tentangsiantartop.jpg" 
+              alt="Siantar Top Company" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                Gedung Kantor Pusat
+              </h3>
+              <p className="text-sm md:text-base">
+                Fasilitas modern untuk operasional terbaik
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 2 */}
+        <SwiperSlide>
+          <div className="relative h-[300px] md:h-[400px]">
+            <img 
+              src="/assets/goriorio.jpg" 
+              alt="Production Facility" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                Area Produksi
+              </h3>
+              <p className="text-sm md:text-base">
+                Teknologi terkini dengan standar internasional
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* SLIDE 3 */}
+        <SwiperSlide>
+          <div className="relative h-[300px] md:h-[400px]">
+            <img 
+              src="/assets/dharmabakti.jpg" 
+              alt="Quality Control" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                Tim Profesional
+              </h3>
+              <p className="text-sm md:text-base">
+                Komitmen pada kualitas dan keselamatan
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
           {/* Sejarah Perusahaan */}
           <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">Sejarah Perusahaan</h2>
