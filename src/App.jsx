@@ -483,19 +483,43 @@ const EducationModal = ({ isOpen, onClose }) => {
           {trainings.map((t, index) => (
             <div
               key={index}
-              className="rounded-lg border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition duration-300"
+              className="rounded-lg border border-gray-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <a
                 href={t.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block"
+                className="block relative group"
               >
-                <img
-                  src={t.placeholder}
-                  alt={t.title}
-                  className="w-full h-48 object-cover hover:opacity-90 transition duration-300"
-                />
+                {/* Image Container */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={t.placeholder}
+                    alt={t.title}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                  
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                    <div className="bg-red-600 rounded-full p-4 shadow-2xl animate-pulse">
+                      <svg 
+                        className="w-12 h-12 text-white" 
+                        fill="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* "Tonton Video" Label */}
+                  <div className="absolute bottom-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    Tonton Video
+                  </div>
+                </div>
               </a>
 
               <div className="p-5">
