@@ -3,11 +3,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import { Routes, Route } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import AboutSection from './components/AboutSection';
+import { Routes, Route, Link } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
+
+// -------------------------------------------------------------------------
 
 // --- Komponen Icon (menggunakan inline SVG) ---
 const CheckCircle = (props) => (
@@ -1466,7 +1469,7 @@ const Container = ({ children }) => (
 );
 
 // Main Application Component
-const App = () => {
+function HomePage() {
   // State untuk menu Mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -1812,12 +1815,12 @@ const App = () => {
               <p className="text-gray-600 mb-6">
                 Dengan memadukan teknologi modern dan bahan baku pilihan, kami memastikan setiap produk yang sampai ke tangan Anda telah melalui proses kontrol kualitas yang ketat, demi kepuasan dan kepercayaan pelanggan.
               </p>
-              {/* <Link 
-                to="/profil-lengkap" 
-                className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300"
+              <Link 
+                to="/about" 
+                className="inline-block bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition duration-300 transform hover:scale-105 shadow-md"
               >
                 Profil Lebih Lengkap
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
@@ -2149,6 +2152,19 @@ const App = () => {
         onBack={handleBackToSelection}
       />
     </div>
+  );
+};
+
+// ===== KOMPONEN APP SEBAGAI ROUTER CONTAINER =====
+const App = () => {
+  return (
+    <>
+      <ScrollToTop />  {/* Tambahkan ini */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutSection />} />
+      </Routes>
+    </>
   );
 };
 
