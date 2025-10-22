@@ -41,7 +41,7 @@ function AboutSection() {
 
       {/* Konten Detail */}
       <section className="py-16">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 max-w-5xl">
           {/* IMAGE SLIDER */}
     <div className="mb-8 rounded-xl overflow-hidden shadow-2xl">
       <Swiper
@@ -165,7 +165,7 @@ function AboutSection() {
           </div>
 
           {/* Nilai-Nilai Perusahaan */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-6">Nilai-Nilai Perusahaan</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
@@ -193,6 +193,24 @@ function AboutSection() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Denah Lokasi K3 */}
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Denah Lokasi K3</h2>
+            <div className="flex justify-center items-center py-6">
+              <div className="w-full max-w-2xl">
+                <img 
+                  src="/assets/denah.png" 
+                  alt="Denah Lokasi K3" 
+                  className="w-full h-auto object-contain transform rotate-90"
+                  style={{ maxHeight: '800px' }}
+                />
+              </div>
+            </div>
+            <p className="text-center text-gray-500 text-sm mt-4">
+              Klik atau zoom untuk melihat detail denah lokasi K3
+            </p>
           </div>
         </div>
       </section>
