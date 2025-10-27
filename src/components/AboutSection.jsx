@@ -43,84 +43,85 @@ function AboutSection() {
       <section className="py-16">
         <div className="container mx-auto px-6 max-w-5xl">
           {/* IMAGE SLIDER */}
-    <div className="mb-8 rounded-xl overflow-hidden shadow-2xl">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        effect="fade"
-        navigation
-        pagination={{ 
-          clickable: true,
-          dynamicBullets: true 
-        }}
-        autoplay={{
-          delay: 3500,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        className="aboutContentSwiper"
-        fadeEffect={{ crossFade: true }}
-      >
-        {/* SLIDE 1 */}
-        <SwiperSlide>
-          <div className="relative h-[300px] md:h-[400px]">
-            <img 
-              src="/assets/tentangsiantartop.jpg" 
-              alt="Siantar Top Company" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                Gedung Kantor Pusat
-              </h3>
-              <p className="text-sm md:text-base">
-                Fasilitas modern untuk operasional terbaik
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
+          <div className="mb-8 rounded-xl overflow-hidden shadow-2xl">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay, EffectFade]}
+              effect="fade"
+              navigation
+              pagination={{ 
+                clickable: true,
+                dynamicBullets: true 
+              }}
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              className="aboutContentSwiper"
+              fadeEffect={{ crossFade: true }}
+            >
+              {/* SLIDE 1 */}
+              <SwiperSlide>
+                <div className="relative h-[300px] md:h-[400px]">
+                  <img 
+                    src="/assets/tentangsiantartop.jpg" 
+                    alt="Siantar Top Company" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                      Gedung Kantor Pusat
+                    </h3>
+                    <p className="text-sm md:text-base">
+                      Fasilitas modern untuk operasional terbaik
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
 
-        {/* SLIDE 2 */}
-        <SwiperSlide>
-          <div className="relative h-[300px] md:h-[400px]">
-            <img 
-              src="/assets/goriorio.jpg" 
-              alt="Production Facility" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                Area Produksi
-              </h3>
-              <p className="text-sm md:text-base">
-                Teknologi terkini dengan standar internasional
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
+              {/* SLIDE 2 */}
+              <SwiperSlide>
+                <div className="relative h-[300px] md:h-[400px]">
+                  <img 
+                    src="/assets/goriorio.jpg" 
+                    alt="Production Facility" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                      Area Produksi
+                    </h3>
+                    <p className="text-sm md:text-base">
+                      Teknologi terkini dengan standar internasional
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
 
-        {/* SLIDE 3 */}
-        <SwiperSlide>
-          <div className="relative h-[300px] md:h-[400px]">
-            <img 
-              src="/assets/dharmabakti.jpg" 
-              alt="Quality Control" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                Tim Profesional
-              </h3>
-              <p className="text-sm md:text-base">
-                Komitmen pada kualitas dan keselamatan
-              </p>
-            </div>
+              {/* SLIDE 3 */}
+              <SwiperSlide>
+                <div className="relative h-[300px] md:h-[400px]">
+                  <img 
+                    src="/assets/dharmabakti.jpg" 
+                    alt="Quality Control" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                      Tim Profesional
+                    </h3>
+                    <p className="text-sm md:text-base">
+                      Komitmen pada kualitas dan keselamatan
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
-        </SwiperSlide>
-      </Swiper>
-    </div>
+
           {/* Sejarah Perusahaan */}
           <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">Sejarah Perusahaan</h2>
@@ -212,6 +213,86 @@ function AboutSection() {
               Klik atau zoom untuk melihat detail denah lokasi K3
             </p>
           </div>
+
+          {/* Google Maps Location */}
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Lokasi PT. Siantar Top Tbk Sidoarjo</h2>
+            <div className="flex justify-center items-center">
+              <iframe
+                title="Lokasi Google Maps - PT Siantar Top Tbk"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d331569.34896092187!2d112.55684819618916!3d-7.443633954615127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e52518bd81e3%3A0x34d1f5a84879e13d!2sPT.%20Siantar%20Top%2C%20Tbk.!5e0!3m2!1sid!2sid!4v1761576720473!5m2!1sid!2sid"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+
+          
+          {/* Social Media of PT. */}
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 text-center">Hubungi Kami</h2>
+            <p className="text-center text-gray-600 mb-8">
+              Terhubung dengan kami melalui platform resmi kami.
+            </p>
+            <div className="flex justify-center items-center flex-wrap gap-6 md:gap-8">
+
+              {/* Instagram -- DIGANTI */}
+              <a 
+                href="https://www.instagram.com/siantartop/" 
+                title="Instagram"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl"
+                aria-label="Kunjungi Instagram Siantar Top"
+              >
+                {/* Menggunakan Font Awesome icon */}
+                <i className="fab fa-instagram text-3xl"></i>
+              </a>
+
+              {/* Email -- DIGANTI */}
+              <a 
+                href="mailto:customerservice@siantartop.co.id" 
+                title="Email"
+                className="flex items-center justify-center w-16 h-16 bg-red-600 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:bg-red-700 hover:shadow-xl"
+                aria-label="Kirim Email ke Siantar Top"
+              >
+                {/* Menggunakan Font Awesome icon */}
+                <i className="fas fa-envelope text-3xl"></i>
+              </a>
+
+              {/* WhatsApp -- DIGANTI */}
+              <a 
+                href="https://wa.me/62..." // Ganti dengan nomor WhatsApp resmi jika ada
+                title="WhatsApp"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:bg-green-600 hover:shadow-xl"
+                aria-label="Hubungi Siantar Top via WhatsApp"
+              >
+                {/* Menggunakan Font Awesome icon */}
+                <i className="fab fa-whatsapp text-3xl"></i>
+              </a>
+              
+              {/* Website -- DIGANTI */}
+              <a 
+                href="https://siantartop.co.id/" 
+                title="Website Resmi"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-16 h-16 bg-slate-700 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:bg-slate-800 hover:shadow-xl"
+                aria-label="Kunjungi Website Resmi Siantar Top"
+            _ >
+                {/* Menggunakan Font Awesome icon */}
+                <i className="fas fa-globe text-3xl"></i>
+              </a>
+
+            </div>
+          </div>
+
         </div>
       </section>
 
