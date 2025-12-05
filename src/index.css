@@ -11,19 +11,17 @@
   font-weight: 400;
 }
 
-/* Memastikan elemen root dan body mengisi seluruh viewport */
 body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Kelas khusus untuk memastikan font Inter digunakan */
 .font-inter { 
   font-family: 'Inter', sans-serif; 
 }
 html, body {
   width: 100%;
-  overflow-x: hidden; /* cegah scroll horizontal */
+  /* overflow-x: hidden;  */
 }
 

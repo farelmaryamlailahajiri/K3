@@ -129,4 +129,17 @@ const App = () => {
   );
 };
 
+// ===== KOMPONEN APP SEBAGAI ROUTER CONTAINER =====
+const App = () => {
+  return (
+    <>
+      <ScrollToTop />  {/* Tambahkan ini */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutSection />} />
+      </Routes>
+    </>
+  );
+};
+
 export default App;
