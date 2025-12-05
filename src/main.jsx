@@ -1,13 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import { StrictMode } from 'react';
+// 1. Mengimpor client API dari react-dom
+import { createRoot } from 'react-dom/client'; 
+import './index.css';
+import App from './App.jsx';
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root');
+// 3. Membuat root
+const root = createRoot(container); 
+root.render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-)
+    <App />
+  </StrictMode>
+);

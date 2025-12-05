@@ -12,7 +12,8 @@ import "swiper/css/effect-fade";
 // Import Custom Components/Layouts
 import { Container } from "./Layouts";
 import AboutSection from "./AboutSection";
-import { ManagementSection } from "./ManajemenSection";
+// src/components/Sections.jsx
+import ManagementSection from "./ManajemenSection";
 import { Shield, EnvironmentBuilding, Users, HardHat, FileText, Zap, Plus, AlertTriangle, CheckCircle, ShieldCheckIcon, InfoIcon } from "./Icons";
 
 // -----------------------------------------------------------
@@ -212,7 +213,7 @@ export const PillarsSection = ({ focusAreas }) => (
 
 // MANAJEMEN SECTION - Updated with soft colors
 export const ManajemenSection = ({ managementData }) => (
-  <section id="management" className="py-24 bg-white w-full">
+  <section id="manajemen" className="py-24 bg-white w-full">
     <Container>
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <div className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold mb-4">

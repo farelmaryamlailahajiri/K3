@@ -40,7 +40,7 @@ const ManagementItem = ({ title, description, Icon, colorClass, action }) => (
 );
 
 export const ManagementSection = ({ onOpenSMK3, onOpenRisk, onOpenOrgChart, onOpenBlueprint, onOpenAudit }) => (
-  <section id="management" className="py-24 bg-gradient-to-b from-white to-gray-50 w-full">
+  <section id="manajemen" className="py-24 bg-gradient-to-b from-white to-gray-50 w-full">
     <Container>
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <div className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold mb-4">
