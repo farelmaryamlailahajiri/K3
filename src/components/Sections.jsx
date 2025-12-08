@@ -773,7 +773,7 @@ export const OrgChartModal = ({ isOpen, onClose }) => {
 
         </div>
       </div>
-      <p className="text-center text-sm" style={{ color: "grey" }}>Geser ke kiri/kanan untuk melihat seluruh struktur organisasi.</p>
+      <p className="text-center text-sm text-gray-500">Geser ke kiri/kanan untuk melihat seluruh struktur organisasi.</p>
     </BaseModal>
   );
 };
@@ -810,7 +810,7 @@ export const AuditFileModal = ({ isOpen, onClose }) => (
   <BaseModal isOpen={isOpen} onClose={onClose} title="File Audit & Sertifikasi K3">
     <div className="space-y-4">
       <p className="text-gray-600">
-        Placeholder untuk menampilkan daftar dokumen/file PDF hasil Audit dan Sertifikasi K3 terbaru.
+        Placeholder untuk menampilkan dokumen K3 terbaru.
       </p>
       <div className="p-4 bg-purple-50 rounded-xl border border-purple-200">
         <div className="flex items-center gap-3 mb-4">
@@ -819,16 +819,29 @@ export const AuditFileModal = ({ isOpen, onClose }) => (
           </div>
           <div>
             <h4 className="font-semibold text-gray-900">Dokumen Tersedia:</h4>
-            <p className="text-sm text-gray-600">Laporan audit internal dan eksternal</p>
+            <p className="text-sm text-gray-600">Lampiran Hasil Audit K3</p>
           </div>
         </div>
         <div className="space-y-2">
-          {["Audit Q1 2024", "Sertifikasi ISO 45001", "Laporan Investigasi Insiden"].map((item, idx) => (
-            <div key={idx} className="flex items-center justify-between p-3 bg-white rounded-lg">
-              <span className="font-medium">{item}</span>
-              <span className="text-sm text-gray-500">PDF • 2.4 MB</span>
+          <a 
+            href="/pdf/Lampiran Hasil Audit K3 2025.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-3 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-gray-200"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <FileText className="w-4 h-4 text-blue-600" />
+              </div>
+              <div>
+                <span className="font-medium text-gray-900 block">Lampiran Hasil Audit K3</span>
+                <span className="text-xs text-gray-500">PDF • 2.4 MB</span>
+              </div>
             </div>
-          ))}
+            <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+              Lihat PDF →
+            </button>
+          </a>
         </div>
       </div>
     </div>
