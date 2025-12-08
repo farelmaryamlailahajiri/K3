@@ -587,6 +587,14 @@ const BaseModal = ({ isOpen, onClose, title, children, maxWidth = "max-w-xl" }) 
 };
 
 // SMK3 Modal
+const smk3Docs = [
+  { label: "Prosedur K3", href: "/pdf/prosedur-k3.pdf" },
+  { label: "Instruksi Kerja", href: "/pdf/instruksi-kerja-k3.pdf" },
+  { label: "Formulir Insiden", href: "/pdf/formulir-insiden-k3.pdf" },
+  // Sertifikasi: belum ada PDF → biarkan tanpa href
+  { label: "Sertifikasi", href: null },
+];
+
 export const SMK3Modal = ({ isOpen, onClose }) => (
   <BaseModal isOpen={isOpen} onClose={onClose} title="Dokumen SMK3 (ISO 45001)">
     <div className="space-y-4">
@@ -596,21 +604,50 @@ export const SMK3Modal = ({ isOpen, onClose }) => (
           Akan terisi di pengembangan selanjutnya.
         </p>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {["Prosedur K3", "Instruksi Kerja", "Formulir Insiden", "Sertifikasi"].map((item, idx) => (
-          <div key={idx} className="p-4 border border-gray-200 rounded-xl hover:border-emerald-300 transition-colors duration-200">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <FileText className="w-5 h-5 text-emerald-600" />
+        {smk3Docs.map((doc, idx) => {
+          const CardContent = (
+            <div className="p-4 border border-gray-200 rounded-xl hover:border-emerald-300 transition-colors duration-200">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-emerald-600" />
+                </div>
+                <span className="font-medium text-gray-900">{doc.label}</span>
               </div>
-              <span className="font-medium text-gray-900">{item}</span>
+              {doc.href && (
+                <p className="mt-2 text-sm text-emerald-700">
+                  Klik untuk membuka dokumen PDF.
+                </p>
+              )}
+              {!doc.href && (
+                <p className="mt-2 text-sm text-gray-500">
+                  Dokumen sertifikasi akan ditambahkan kemudian.
+                </p>
+              )}
             </div>
-          </div>
-        ))}
+          );
+
+          // Jika ada href → bungkus dengan <a>, kalau tidak cukup <div> biasa
+          return doc.href ? (
+            <a
+              key={idx}
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              {CardContent}
+            </a>
+          ) : (
+            <div key={idx}>{CardContent}</div>
+          );
+        })}
       </div>
     </div>
   </BaseModal>
 );
+
 
 // Risk Management Modal
 export const RiskManagementModal = ({ isOpen, onClose }) => (
