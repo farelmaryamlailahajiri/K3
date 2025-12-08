@@ -214,8 +214,8 @@ const ManagementItem = ({ title, description, Icon, colorClass, action }) => (
     <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 ${colorClass.replace('bg-', 'bg-gradient-to-br from-')}`}></div>
     
     {/* Icon with soft background */}
-    <div className={`relative z-10 inline-flex p-4 rounded-2xl ${colorClass.replace('600', '100')} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-      <Icon className={`w-8 h-8 ${colorClass.replace('600', '600')}`} />
+    <div className={`relative z-10 inline-flex p-4 rounded-2xl ${colorClass} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+      <Icon className="w-8 h-8 text-white" />
     </div>
     
     {/* Content */}

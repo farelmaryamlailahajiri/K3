@@ -633,26 +633,152 @@ export const RiskManagementModal = ({ isOpen, onClose }) => (
   </BaseModal>
 );
 
-// Org Chart Modal
-export const OrgChartModal = ({ isOpen, onClose }) => (
-  <BaseModal isOpen={isOpen} onClose={onClose} title="Struktur Organisasi K3" maxWidth="max-w-4xl">
-    <div className="space-y-4">
-      <div className="bg-gray-100 rounded-xl p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Users className="w-8 h-8 text-blue-600" />
+
+// -----------------------------------------------------------
+// C. ORGANIZATIONAL CHART MODAL - Clean Diagram Design
+// -----------------------------------------------------------
+// Ubah ukuran min-w, max-w, dan min-h, serta padding di OrgCard
+const OrgCard = ({ title, type = "default" }) => {
+  const styles = {
+    default: "bg-white border-gray-300 text-gray-800",
+    secondary: "bg-gray-50 border-gray-200 text-gray-600",
+  };
+
+  return (
+    <div className={`
+      relative z-10 px-2 py-2 rounded-lg border-2 text-center
+      flex items-center justify-center w-[160px] h-[60px]
+      shadow-sm hover:shadow-md transition-all duration-300 
+      text-[11px] leading-tight font-semibold select-none
+      ${styles[type] || styles.default}
+    `}>
+      {title}
+    </div>
+  );
+};
+
+// Garis Vertikal Standar
+const VLine = ({ height = "h-6" }) => (
+  <div className={`w-0.5 bg-gray-400 mx-auto ${height}`}></div>
+);
+
+export const OrgChartModal = ({ isOpen, onClose }) => {
+  return (
+    <BaseModal isOpen={isOpen} onClose={onClose} title="Struktur Organisasi K3" maxWidth="max-w-4xl">
+      <div className="w-full overflow-x-auto overflow-y-auto max-h-[65vh] p-4 bg-gray-50 rounded-xl border border-gray-100 custom-scrollbar">
+        
+        {/* Wrapper Utama */}
+        <div className="min-w-[600px] flex flex-col items-center py-2 pb-8 origin-top scale-95">
+          
+          {/* LEVEL 1: Dewan Komisaris */}
+          <div className="flex flex-col items-center">
+            <OrgCard title="Dewan Komisaris"/>
+            <VLine height="h-6" />
           </div>
-          <p className="text-gray-600">
-            Diagram struktur organisasi K3 akan ditampilkan di sini
-          </p>
+
+          {/* LEVEL 2: 3 Direksi */}
+          {/* Container relative untuk garis penghubung */}
+          <div className="relative flex justify-center gap-6 pt-4">
+             {/* Garis Horizontal Penghubung Utama (Top) */}
+             <div className="absolute top-0 left-[80px] right-[80px] h-0.5 bg-gray-400"></div>
+             {/* Konektor Vertikal dari Level 1 (Top Center) */}
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+
+             {/* Item Kiri */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Direktur Operasional" />
+             </div>
+
+             {/* Item Tengah */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Direktur Utama PT. Siantar Top" />
+                <VLine height="h-8" />
+             </div>
+
+             {/* Item Kanan */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Manajer P2K3" />
+                <VLine height="h-8" />
+             </div>
+          </div>
+
+          {/* LEVEL 3: Manajer K3 & Sekretaris */}
+          <div className="flex justify-center gap-6 w-full -mt-2 relative">
+             {/* Placeholder Kiri agar Manajer K3 tetap di tengah (bawah Dirut) */}
+             <div className="w-[160px]"></div>
+
+             {/* Tengah: Manajer K3 */}
+             <div className="flex flex-col items-center relative">
+                <OrgCard title="Manajer K3" />
+                <VLine height="h-8" />
+                
+                {/* Garis Horizontal ke Kanan (Sekretaris) */}
+                {/* Posisi: Start dari tengah box Manajer K3, panjang sampai tengah box Sekretaris */}
+                <div className="absolute top-[30px] left-1/2 w-[calc(100%+24px)] h-0.5 bg-gray-400 -z-10"></div>
+             </div>
+
+             {/* Kanan: Sekretaris */}
+             <div className="flex flex-col items-center">
+                <OrgCard title="Sekretaris P2K3" />
+             </div>
+          </div>
+
+          {/* LEVEL 4: 3 Koordinator */}
+          <div className="relative flex justify-center gap-6 pt-4">
+             {/* GARIS PENGHUBUNG ATAS (Bracket Naik ke Manajer K3) */}
+             {/* Garis horizontal melintasi 3 koordinator */}
+             <div className="absolute top-0 left-[80px] right-[80px] h-0.5 bg-gray-400"></div>
+             {/* Garis vertikal naik ke Manajer K3 */}
+             <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+
+             {/* Koord 1 */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Koordinator Operasi & Teknisi K3" />
+                <div className="h-6 w-0.5 bg-gray-400"></div>
+             </div>
+
+             {/* Koord 2 */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Koordinator Kepatuhan & Admin K3" />
+                <div className="h-6 w-0.5 bg-gray-400"></div>
+             </div>
+
+             {/* Koord 3 */}
+             <div className="flex flex-col items-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-4 w-0.5 bg-gray-400"></div>
+                <OrgCard title="Koordinator Kesehatan & Pelatihan K3" />
+                <div className="h-6 w-0.5 bg-gray-400"></div>
+             </div>
+
+             {/* GARIS PENGHUBUNG BAWAH (Bracket Turun ke Supervisor) */}
+             <div className="absolute bottom-0 left-[80px] right-[80px] h-0.5 bg-gray-400"></div>
+          </div>
+
+          {/* LEVEL 5: Supervisor */}
+          <div className="flex flex-col items-center">
+             <div className="h-6 w-0.5 bg-gray-400"></div>
+             <OrgCard title="Supervisor Departemen Lini" />
+             <VLine height="h-6" />
+          </div>
+
+          {/* LEVEL 6: Karyawan */}
+          <div className="flex flex-col items-center">
+             <OrgCard title="Karyawan Lini Depan" type="secondary" />
+          </div>
+
         </div>
       </div>
-      <p className="text-sm text-gray-500 text-center">
-        Placeholder untuk menempatkan gambar/diagram Struktur Organisasi Divisi K3 dan Tim Darurat.
-      </p>
-    </div>
-  </BaseModal>
-);
+      <p className="text-center text-sm" style={{ color: "grey" }}>Geser ke kiri/kanan untuk melihat seluruh struktur organisasi.</p>
+    </BaseModal>
+  );
+};
+
+
 
 // Blueprint Modal
 export const BlueprintModal = ({ isOpen, onClose }) => (
