@@ -190,14 +190,13 @@ const ManajemenRisikoModal = ({ isOpen, onClose }) => {
                 onClick={() => {
                   // Tutup modal dulu
                   onClose();
-
-                // Buka dokumen lengkap ManajemenRisiko.pdf di tab baru
-                window.open("/pdf/ManajemenRisiko.pdf/", "_blank", "noopener,noreferrer");
-                  }}
-                  className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200"
-                  >
-                  Lihat Dokumen Lengkap
-                </button>
+                  // Buka dokumen lengkap ManajemenRisiko.pdf di tab baru
+                  window.open("/pdf/ManajemenRisiko.pdf", "_blank", "noopener,noreferrer");
+                }}
+                className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200"
+              >
+                Lihat Dokumen Lengkap
+              </button>
             </div>
           </div>
         </div>

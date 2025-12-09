@@ -819,28 +819,72 @@ export const OrgChartModal = ({ isOpen, onClose }) => {
 
 // Blueprint Modal
 export const BlueprintModal = ({ isOpen, onClose }) => (
-  <BaseModal isOpen={isOpen} onClose={onClose} title="Denah Perusahaan & Evakuasi" maxWidth="max-w-4xl">
+  <BaseModal
+    isOpen={isOpen}
+    onClose={onClose}
+    title="Denah Perusahaan & Evakuasi"
+    maxWidth="max-w-4xl"
+  >
+    {/* Body */}
     <div className="space-y-4">
       <div className="bg-amber-50 rounded-xl p-8 border border-amber-200">
         <div className="grid grid-cols-3 gap-4 text-center">
-          {["APAR", "Titik Kumpul", "Jalur Evakuasi", "P3K", "Exit", "Assembly Point"].map((item, idx) => (
-            <div key={idx} className="p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
+          {["APAR", "Titik Kumpul", "Jalur Evakuasi", "P3K", "Exit", "Assembly Point"].map(
+            (item, idx) => (
+              <div key={idx} className="p-3 bg-white rounded-lg">
+                <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <svg
+                    className="w-4 h-4 text-amber-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-sm font-medium">{item}</span>
               </div>
-              <span className="text-sm font-medium">{item}</span>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
+
       <p className="text-sm text-gray-500 text-center">
-        Placeholder untuk menempatkan Denah Perusahaan yang menunjukkan lokasi APAR, titik kumpul, dan jalur evakuasi.
+        Placeholder untuk menempatkan Denah Perusahaan yang menunjukkan lokasi APAR, titik
+        kumpul, dan jalur evakuasi.
       </p>
+    </div>
+
+    {/* Footer (hanya di bagian bawah) */}
+    <div className="border-t border-gray-200 p-6 mt-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="text-sm text-gray-500">
+          <p className="flex items-center gap-2">
+            <span className="font-medium text-gray-700">Update terakhir:</span> 15 Maret 2024
+          </p>
+          <p className="text-xs mt-1">
+            Sistem dikelola oleh: Divisi K3 PT. Siantar Top
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            onClick={() => {
+              onClose();
+              window.open("/assets/denah.jpg", "_blank", "noopener,noreferrer");
+            }}
+            className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200"
+          >
+            Lihat Dokumen Denah
+          </button>
+        </div>
+      </div>
     </div>
   </BaseModal>
 );
+
 
 // Audit File Modal
 export const AuditFileModal = ({ isOpen, onClose }) => (
